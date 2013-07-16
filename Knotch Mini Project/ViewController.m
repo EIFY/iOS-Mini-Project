@@ -17,7 +17,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	  // Do any additional setup after loading the view, typically from a nib.
+    
+    NSLog(@"%f, %f", self.view.frame.size.width, self.view.frame.size.height);
+    //Sanity check: 320.000000, 548.000000 indeed
+    
 }
 
 - (void)didReceiveMemoryWarning

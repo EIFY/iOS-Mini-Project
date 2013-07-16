@@ -17,7 +17,6 @@
 		F44198891794D1DB007C6375 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F44198881794D1DB007C6375 /* Default@2x.png */; };
 		F441988B1794D1DB007C6375 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F441988A1794D1DB007C6375 /* Default-568h@2x.png */; };
 		F441988E1794D1DB007C6375 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F441988D1794D1DB007C6375 /* ViewController.m */; };
-		F44198911794D1DB007C6375 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F441988F1794D1DB007C6375 /* ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +35,6 @@
 		F441988A1794D1DB007C6375 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F441988C1794D1DB007C6375 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		F441988D1794D1DB007C6375 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		F44198901794D1DB007C6375 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +85,6 @@
 				F44198841794D1DB007C6375 /* AppDelegate.m */,
 				F441988C1794D1DB007C6375 /* ViewController.h */,
 				F441988D1794D1DB007C6375 /* ViewController.m */,
-				F441988F1794D1DB007C6375 /* ViewController.xib */,
 				F441987B1794D1DB007C6375 /* Supporting Files */,
 			);
 			path = "Knotch Mini Project";
@@ -162,7 +159,6 @@
 				F44198871794D1DB007C6375 /* Default.png in Resources */,
 				F44198891794D1DB007C6375 /* Default@2x.png in Resources */,
 				F441988B1794D1DB007C6375 /* Default-568h@2x.png in Resources */,
-				F44198911794D1DB007C6375 /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,14 +184,6 @@
 				F441987E1794D1DB007C6375 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		F441988F1794D1DB007C6375 /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F44198901794D1DB007C6375 /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -298,6 +286,7 @@
 				F44198961794D1DB007C6375 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
