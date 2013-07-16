@@ -1,0 +1,303 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F44198751794D1DB007C6375 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44198741794D1DB007C6375 /* UIKit.framework */; };
+		F44198771794D1DB007C6375 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44198761794D1DB007C6375 /* Foundation.framework */; };
+		F44198791794D1DB007C6375 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44198781794D1DB007C6375 /* CoreGraphics.framework */; };
+		F441987F1794D1DB007C6375 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F441987D1794D1DB007C6375 /* InfoPlist.strings */; };
+		F44198811794D1DB007C6375 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F44198801794D1DB007C6375 /* main.m */; };
+		F44198851794D1DB007C6375 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F44198841794D1DB007C6375 /* AppDelegate.m */; };
+		F44198871794D1DB007C6375 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F44198861794D1DB007C6375 /* Default.png */; };
+		F44198891794D1DB007C6375 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F44198881794D1DB007C6375 /* Default@2x.png */; };
+		F441988B1794D1DB007C6375 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F441988A1794D1DB007C6375 /* Default-568h@2x.png */; };
+		F441988E1794D1DB007C6375 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F441988D1794D1DB007C6375 /* ViewController.m */; };
+		F44198911794D1DB007C6375 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F441988F1794D1DB007C6375 /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F44198711794D1DB007C6375 /* Knotch Mini Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Knotch Mini Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F44198741794D1DB007C6375 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F44198761794D1DB007C6375 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F44198781794D1DB007C6375 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F441987C1794D1DB007C6375 /* Knotch Mini Project-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Knotch Mini Project-Info.plist"; sourceTree = "<group>"; };
+		F441987E1794D1DB007C6375 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F44198801794D1DB007C6375 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F44198821794D1DB007C6375 /* Knotch Mini Project-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Knotch Mini Project-Prefix.pch"; sourceTree = "<group>"; };
+		F44198831794D1DB007C6375 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F44198841794D1DB007C6375 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F44198861794D1DB007C6375 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		F44198881794D1DB007C6375 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		F441988A1794D1DB007C6375 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F441988C1794D1DB007C6375 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F441988D1794D1DB007C6375 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F44198901794D1DB007C6375 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F441986E1794D1DB007C6375 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F44198751794D1DB007C6375 /* UIKit.framework in Frameworks */,
+				F44198771794D1DB007C6375 /* Foundation.framework in Frameworks */,
+				F44198791794D1DB007C6375 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F44198681794D1DB007C6375 = {
+			isa = PBXGroup;
+			children = (
+				F441987A1794D1DB007C6375 /* Knotch Mini Project */,
+				F44198731794D1DB007C6375 /* Frameworks */,
+				F44198721794D1DB007C6375 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F44198721794D1DB007C6375 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F44198711794D1DB007C6375 /* Knotch Mini Project.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F44198731794D1DB007C6375 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F44198741794D1DB007C6375 /* UIKit.framework */,
+				F44198761794D1DB007C6375 /* Foundation.framework */,
+				F44198781794D1DB007C6375 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F441987A1794D1DB007C6375 /* Knotch Mini Project */ = {
+			isa = PBXGroup;
+			children = (
+				F44198831794D1DB007C6375 /* AppDelegate.h */,
+				F44198841794D1DB007C6375 /* AppDelegate.m */,
+				F441988C1794D1DB007C6375 /* ViewController.h */,
+				F441988D1794D1DB007C6375 /* ViewController.m */,
+				F441988F1794D1DB007C6375 /* ViewController.xib */,
+				F441987B1794D1DB007C6375 /* Supporting Files */,
+			);
+			path = "Knotch Mini Project";
+			sourceTree = "<group>";
+		};
+		F441987B1794D1DB007C6375 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F441987C1794D1DB007C6375 /* Knotch Mini Project-Info.plist */,
+				F441987D1794D1DB007C6375 /* InfoPlist.strings */,
+				F44198801794D1DB007C6375 /* main.m */,
+				F44198821794D1DB007C6375 /* Knotch Mini Project-Prefix.pch */,
+				F44198861794D1DB007C6375 /* Default.png */,
+				F44198881794D1DB007C6375 /* Default@2x.png */,
+				F441988A1794D1DB007C6375 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F44198701794D1DB007C6375 /* Knotch Mini Project */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F44198941794D1DB007C6375 /* Build configuration list for PBXNativeTarget "Knotch Mini Project" */;
+			buildPhases = (
+				F441986D1794D1DB007C6375 /* Sources */,
+				F441986E1794D1DB007C6375 /* Frameworks */,
+				F441986F1794D1DB007C6375 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Knotch Mini Project";
+			productName = "Knotch Mini Project";
+			productReference = F44198711794D1DB007C6375 /* Knotch Mini Project.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F44198691794D1DB007C6375 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Chuan-Chih Chou";
+			};
+			buildConfigurationList = F441986C1794D1DB007C6375 /* Build configuration list for PBXProject "Knotch Mini Project" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F44198681794D1DB007C6375;
+			productRefGroup = F44198721794D1DB007C6375 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F44198701794D1DB007C6375 /* Knotch Mini Project */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F441986F1794D1DB007C6375 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F441987F1794D1DB007C6375 /* InfoPlist.strings in Resources */,
+				F44198871794D1DB007C6375 /* Default.png in Resources */,
+				F44198891794D1DB007C6375 /* Default@2x.png in Resources */,
+				F441988B1794D1DB007C6375 /* Default-568h@2x.png in Resources */,
+				F44198911794D1DB007C6375 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F441986D1794D1DB007C6375 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F44198811794D1DB007C6375 /* main.m in Sources */,
+				F44198851794D1DB007C6375 /* AppDelegate.m in Sources */,
+				F441988E1794D1DB007C6375 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F441987D1794D1DB007C6375 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F441987E1794D1DB007C6375 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F441988F1794D1DB007C6375 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F44198901794D1DB007C6375 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F44198921794D1DB007C6375 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F44198931794D1DB007C6375 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F44198951794D1DB007C6375 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Knotch Mini Project/Knotch Mini Project-Prefix.pch";
+				INFOPLIST_FILE = "Knotch Mini Project/Knotch Mini Project-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F44198961794D1DB007C6375 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Knotch Mini Project/Knotch Mini Project-Prefix.pch";
+				INFOPLIST_FILE = "Knotch Mini Project/Knotch Mini Project-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F441986C1794D1DB007C6375 /* Build configuration list for PBXProject "Knotch Mini Project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F44198921794D1DB007C6375 /* Debug */,
+				F44198931794D1DB007C6375 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F44198941794D1DB007C6375 /* Build configuration list for PBXNativeTarget "Knotch Mini Project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F44198951794D1DB007C6375 /* Debug */,
+				F44198961794D1DB007C6375 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F44198691794D1DB007C6375 /* Project object */;
+}
