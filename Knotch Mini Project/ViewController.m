@@ -19,8 +19,19 @@
     [super viewDidLoad];
 	  // Do any additional setup after loading the view, typically from a nib.
     
-    NSLog(@"%f, %f", self.view.frame.size.width, self.view.frame.size.height);
+    //NSLog(@"%f, %f", self.view.frame.size.width, self.view.frame.size.height);
     //Sanity check: 320.000000, 548.000000 indeed
+    
+    UINavigationBar* usernameNavbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 42.5)];
+    [self.view addSubview:usernameNavbar];
+    
+    //usernameNavbar.topItem.title = @"Jane Doe";
+    
+    [usernameNavbar pushNavigationItem:[[UINavigationItem alloc] initWithTitle:@"Anda Gansca"] animated:false];
+    
+    [usernameNavbar setBackgroundColor:[UIColor whiteColor]];
+    usernameNavbar.tintColor = [UIColor whiteColor];
+    usernameNavbar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], UITextAttributeTextColor, nil];
     
 }
 
