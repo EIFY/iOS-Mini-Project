@@ -258,6 +258,7 @@
 		F44198951794D1DB007C6375 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Knotch Mini Project/Knotch Mini Project-Prefix.pch";
 				INFOPLIST_FILE = "Knotch Mini Project/Knotch Mini Project-Info.plist";
@@ -269,6 +270,7 @@
 		F44198961794D1DB007C6375 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Knotch Mini Project/Knotch Mini Project-Prefix.pch";
 				INFOPLIST_FILE = "Knotch Mini Project/Knotch Mini Project-Info.plist";
