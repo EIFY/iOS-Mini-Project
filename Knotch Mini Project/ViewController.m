@@ -31,8 +31,21 @@
     
     [usernameNavbar setBackgroundColor:[UIColor whiteColor]];
     usernameNavbar.tintColor = [UIColor whiteColor];
-    usernameNavbar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], UITextAttributeTextColor, nil];
+    usernameNavbar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], UITextAttributeTextColor, [UIFont fontWithName:@"Aller" size:15], UITextAttributeFont, [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0], UITextAttributeTextShadowColor, nil];
+    [usernameNavbar setTitleVerticalPositionAdjustment:3 forBarMetrics:UIBarMetricsDefault];
     
+    //UIOffsetMake(0, 0), UITextAttributeTextShadowOffset
+    /*
+    for (NSString* family in [UIFont familyNames])
+    {
+        NSLog(@"%@", family);
+        
+        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+        {
+            NSLog(@"  %@", name);
+        }
+    }
+    */
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F43B8AB51795DD61000999E6 /* Aller_Bd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AAE1795DD61000999E6 /* Aller_Bd.ttf */; };
+		F43B8AB61795DD61000999E6 /* Aller_BdIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AAF1795DD61000999E6 /* Aller_BdIt.ttf */; };
+		F43B8AB71795DD61000999E6 /* Aller_It.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AB01795DD61000999E6 /* Aller_It.ttf */; };
+		F43B8AB81795DD61000999E6 /* Aller_Lt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AB11795DD61000999E6 /* Aller_Lt.ttf */; };
+		F43B8AB91795DD61000999E6 /* Aller_LtIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AB21795DD61000999E6 /* Aller_LtIt.ttf */; };
+		F43B8ABA1795DD61000999E6 /* Aller_Rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AB31795DD61000999E6 /* Aller_Rg.ttf */; };
+		F43B8ABB1795DD61000999E6 /* AllerDisplay.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AB41795DD61000999E6 /* AllerDisplay.ttf */; };
+		F43B8AC71795DDB9000999E6 /* Lato-Bla.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8ABD1795DDB9000999E6 /* Lato-Bla.ttf */; };
+		F43B8AC81795DDB9000999E6 /* Lato-BlaIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8ABE1795DDB9000999E6 /* Lato-BlaIta.ttf */; };
+		F43B8AC91795DDB9000999E6 /* Lato-Bol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8ABF1795DDB9000999E6 /* Lato-Bol.ttf */; };
+		F43B8ACA1795DDB9000999E6 /* Lato-BolIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AC01795DDB9000999E6 /* Lato-BolIta.ttf */; };
+		F43B8ACB1795DDB9000999E6 /* Lato-Hai.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AC11795DDB9000999E6 /* Lato-Hai.ttf */; };
+		F43B8ACC1795DDB9000999E6 /* Lato-HaiIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AC21795DDB9000999E6 /* Lato-HaiIta.ttf */; };
+		F43B8ACD1795DDB9000999E6 /* Lato-Lig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AC31795DDB9000999E6 /* Lato-Lig.ttf */; };
+		F43B8ACE1795DDB9000999E6 /* Lato-LigIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AC41795DDB9000999E6 /* Lato-LigIta.ttf */; };
+		F43B8ACF1795DDB9000999E6 /* Lato-Reg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AC51795DDB9000999E6 /* Lato-Reg.ttf */; };
+		F43B8AD01795DDB9000999E6 /* Lato-RegIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AC61795DDB9000999E6 /* Lato-RegIta.ttf */; };
 		F44198751794D1DB007C6375 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44198741794D1DB007C6375 /* UIKit.framework */; };
 		F44198771794D1DB007C6375 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44198761794D1DB007C6375 /* Foundation.framework */; };
 		F44198791794D1DB007C6375 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44198781794D1DB007C6375 /* CoreGraphics.framework */; };
@@ -20,6 +37,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F43B8AAE1795DD61000999E6 /* Aller_Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Aller_Bd.ttf; sourceTree = "<group>"; };
+		F43B8AAF1795DD61000999E6 /* Aller_BdIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Aller_BdIt.ttf; sourceTree = "<group>"; };
+		F43B8AB01795DD61000999E6 /* Aller_It.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Aller_It.ttf; sourceTree = "<group>"; };
+		F43B8AB11795DD61000999E6 /* Aller_Lt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Aller_Lt.ttf; sourceTree = "<group>"; };
+		F43B8AB21795DD61000999E6 /* Aller_LtIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Aller_LtIt.ttf; sourceTree = "<group>"; };
+		F43B8AB31795DD61000999E6 /* Aller_Rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Aller_Rg.ttf; sourceTree = "<group>"; };
+		F43B8AB41795DD61000999E6 /* AllerDisplay.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AllerDisplay.ttf; sourceTree = "<group>"; };
+		F43B8ABD1795DDB9000999E6 /* Lato-Bla.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bla.ttf"; sourceTree = "<group>"; };
+		F43B8ABE1795DDB9000999E6 /* Lato-BlaIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BlaIta.ttf"; sourceTree = "<group>"; };
+		F43B8ABF1795DDB9000999E6 /* Lato-Bol.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bol.ttf"; sourceTree = "<group>"; };
+		F43B8AC01795DDB9000999E6 /* Lato-BolIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BolIta.ttf"; sourceTree = "<group>"; };
+		F43B8AC11795DDB9000999E6 /* Lato-Hai.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Hai.ttf"; sourceTree = "<group>"; };
+		F43B8AC21795DDB9000999E6 /* Lato-HaiIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-HaiIta.ttf"; sourceTree = "<group>"; };
+		F43B8AC31795DDB9000999E6 /* Lato-Lig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Lig.ttf"; sourceTree = "<group>"; };
+		F43B8AC41795DDB9000999E6 /* Lato-LigIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LigIta.ttf"; sourceTree = "<group>"; };
+		F43B8AC51795DDB9000999E6 /* Lato-Reg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Reg.ttf"; sourceTree = "<group>"; };
+		F43B8AC61795DDB9000999E6 /* Lato-RegIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-RegIta.ttf"; sourceTree = "<group>"; };
 		F44198711794D1DB007C6375 /* Knotch Mini Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Knotch Mini Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44198741794D1DB007C6375 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F44198761794D1DB007C6375 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -51,6 +85,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F43B8ABC1795DD77000999E6 /* Aller */ = {
+			isa = PBXGroup;
+			children = (
+				F43B8AAE1795DD61000999E6 /* Aller_Bd.ttf */,
+				F43B8AAF1795DD61000999E6 /* Aller_BdIt.ttf */,
+				F43B8AB01795DD61000999E6 /* Aller_It.ttf */,
+				F43B8AB11795DD61000999E6 /* Aller_Lt.ttf */,
+				F43B8AB21795DD61000999E6 /* Aller_LtIt.ttf */,
+				F43B8AB31795DD61000999E6 /* Aller_Rg.ttf */,
+				F43B8AB41795DD61000999E6 /* AllerDisplay.ttf */,
+			);
+			name = Aller;
+			sourceTree = "<group>";
+		};
+		F43B8AD11795DDC5000999E6 /* Lato */ = {
+			isa = PBXGroup;
+			children = (
+				F43B8ABD1795DDB9000999E6 /* Lato-Bla.ttf */,
+				F43B8ABE1795DDB9000999E6 /* Lato-BlaIta.ttf */,
+				F43B8ABF1795DDB9000999E6 /* Lato-Bol.ttf */,
+				F43B8AC01795DDB9000999E6 /* Lato-BolIta.ttf */,
+				F43B8AC11795DDB9000999E6 /* Lato-Hai.ttf */,
+				F43B8AC21795DDB9000999E6 /* Lato-HaiIta.ttf */,
+				F43B8AC31795DDB9000999E6 /* Lato-Lig.ttf */,
+				F43B8AC41795DDB9000999E6 /* Lato-LigIta.ttf */,
+				F43B8AC51795DDB9000999E6 /* Lato-Reg.ttf */,
+				F43B8AC61795DDB9000999E6 /* Lato-RegIta.ttf */,
+			);
+			name = Lato;
+			sourceTree = "<group>";
+		};
+		F43B8AD21795DDE3000999E6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F43B8ABC1795DD77000999E6 /* Aller */,
+				F43B8AD11795DDC5000999E6 /* Lato */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		F43B8AD31795DDEF000999E6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F43B8AD21795DDE3000999E6 /* Fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		F44198681794D1DB007C6375 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +167,7 @@
 				F44198841794D1DB007C6375 /* AppDelegate.m */,
 				F441988C1794D1DB007C6375 /* ViewController.h */,
 				F441988D1794D1DB007C6375 /* ViewController.m */,
+				F43B8AD31795DDEF000999E6 /* Resources */,
 				F441987B1794D1DB007C6375 /* Supporting Files */,
 			);
 			path = "Knotch Mini Project";
@@ -159,6 +242,23 @@
 				F44198871794D1DB007C6375 /* Default.png in Resources */,
 				F44198891794D1DB007C6375 /* Default@2x.png in Resources */,
 				F441988B1794D1DB007C6375 /* Default-568h@2x.png in Resources */,
+				F43B8AB51795DD61000999E6 /* Aller_Bd.ttf in Resources */,
+				F43B8AB61795DD61000999E6 /* Aller_BdIt.ttf in Resources */,
+				F43B8AB71795DD61000999E6 /* Aller_It.ttf in Resources */,
+				F43B8AB81795DD61000999E6 /* Aller_Lt.ttf in Resources */,
+				F43B8AB91795DD61000999E6 /* Aller_LtIt.ttf in Resources */,
+				F43B8ABA1795DD61000999E6 /* Aller_Rg.ttf in Resources */,
+				F43B8ABB1795DD61000999E6 /* AllerDisplay.ttf in Resources */,
+				F43B8AC71795DDB9000999E6 /* Lato-Bla.ttf in Resources */,
+				F43B8AC81795DDB9000999E6 /* Lato-BlaIta.ttf in Resources */,
+				F43B8AC91795DDB9000999E6 /* Lato-Bol.ttf in Resources */,
+				F43B8ACA1795DDB9000999E6 /* Lato-BolIta.ttf in Resources */,
+				F43B8ACB1795DDB9000999E6 /* Lato-Hai.ttf in Resources */,
+				F43B8ACC1795DDB9000999E6 /* Lato-HaiIta.ttf in Resources */,
+				F43B8ACD1795DDB9000999E6 /* Lato-Lig.ttf in Resources */,
+				F43B8ACE1795DDB9000999E6 /* Lato-LigIta.ttf in Resources */,
+				F43B8ACF1795DDB9000999E6 /* Lato-Reg.ttf in Resources */,
+				F43B8AD01795DDB9000999E6 /* Lato-RegIta.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
