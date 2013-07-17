@@ -6,6 +6,8 @@
 //  Copyright (c) 2013年 Chuan-Chih Chou. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -22,17 +24,34 @@
     //NSLog(@"%f, %f", self.view.frame.size.width, self.view.frame.size.height);
     //Sanity check: 320.000000, 548.000000 indeed
     
-    UINavigationBar* usernameNavbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 42.5)];
+    CGFloat navbarHeight = 42.5;
+    CGFloat colorStripHeight = 232/2;//There is a 1-px strip of lighter shade below in the sample rendering. Not sure if it's intentional...
+    
+    UINavigationBar* usernameNavbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, navbarHeight)];
     [self.view addSubview:usernameNavbar];
     
     //usernameNavbar.topItem.title = @"Jane Doe";
     
-    [usernameNavbar pushNavigationItem:[[UINavigationItem alloc] initWithTitle:@"Anda Gansca"] animated:false];
+    [usernameNavbar pushNavigationItem:[[UINavigationItem alloc] initWithTitle:@"Anda Gansca"] animated:NO];
     
     [usernameNavbar setBackgroundColor:[UIColor whiteColor]];
     usernameNavbar.tintColor = [UIColor whiteColor];
-    usernameNavbar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], UITextAttributeTextColor, [UIFont fontWithName:@"Aller" size:15], UITextAttributeFont, [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0], UITextAttributeTextShadowColor, nil];
+    usernameNavbar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], UITextAttributeTextColor, [UIFont fontWithName:@"Aller" size:15], UITextAttributeFont, [UIColor clearColor], UITextAttributeTextShadowColor, nil];
     [usernameNavbar setTitleVerticalPositionAdjustment:3 forBarMetrics:UIBarMetricsDefault];
+    
+    usernameNavbar.layer.masksToBounds = YES;//Eliminates shadow
+    
+    UIScrollView* containerScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    containerScrollView.backgroundColor = [UIColor whiteColor];
+    
+    UIView* colorStripView = [[UIView alloc] initWithFrame:CGRectMake(0, navbarHeight, 320, colorStripHeight)];
+    colorStripView.backgroundColor = [UIColor colorWithRed:1.0 green:0.8 blue:0.263 alpha:1.0];//Sentiment 14
+    
+    [containerScrollView addSubview:colorStripView];
+    
+    [self.view insertSubview:containerScrollView belowSubview:usernameNavbar];
+    
+    
     
     //UIOffsetMake(0, 0), UITextAttributeTextShadowOffset
     /*

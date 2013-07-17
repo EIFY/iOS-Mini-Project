@@ -24,6 +24,8 @@
 		F43B8ACE1795DDB9000999E6 /* Lato-LigIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AC41795DDB9000999E6 /* Lato-LigIta.ttf */; };
 		F43B8ACF1795DDB9000999E6 /* Lato-Reg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AC51795DDB9000999E6 /* Lato-Reg.ttf */; };
 		F43B8AD01795DDB9000999E6 /* Lato-RegIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AC61795DDB9000999E6 /* Lato-RegIta.ttf */; };
+		F43B8AD517972552000999E6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43B8AD417972552000999E6 /* QuartzCore.framework */; };
+		F43B8AD71797258E000999E6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43B8AD61797258E000999E6 /* QuartzCore.framework */; };
 		F44198751794D1DB007C6375 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44198741794D1DB007C6375 /* UIKit.framework */; };
 		F44198771794D1DB007C6375 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44198761794D1DB007C6375 /* Foundation.framework */; };
 		F44198791794D1DB007C6375 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44198781794D1DB007C6375 /* CoreGraphics.framework */; };
@@ -54,6 +56,8 @@
 		F43B8AC41795DDB9000999E6 /* Lato-LigIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LigIta.ttf"; sourceTree = "<group>"; };
 		F43B8AC51795DDB9000999E6 /* Lato-Reg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Reg.ttf"; sourceTree = "<group>"; };
 		F43B8AC61795DDB9000999E6 /* Lato-RegIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-RegIta.ttf"; sourceTree = "<group>"; };
+		F43B8AD417972552000999E6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F43B8AD61797258E000999E6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F44198711794D1DB007C6375 /* Knotch Mini Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Knotch Mini Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44198741794D1DB007C6375 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F44198761794D1DB007C6375 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -76,9 +80,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F43B8AD517972552000999E6 /* QuartzCore.framework in Frameworks */,
 				F44198751794D1DB007C6375 /* UIKit.framework in Frameworks */,
 				F44198771794D1DB007C6375 /* Foundation.framework in Frameworks */,
 				F44198791794D1DB007C6375 /* CoreGraphics.framework in Frameworks */,
+				F43B8AD71797258E000999E6 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +142,7 @@
 		F44198681794D1DB007C6375 = {
 			isa = PBXGroup;
 			children = (
+				F43B8AD417972552000999E6 /* QuartzCore.framework */,
 				F441987A1794D1DB007C6375 /* Knotch Mini Project */,
 				F44198731794D1DB007C6375 /* Frameworks */,
 				F44198721794D1DB007C6375 /* Products */,
@@ -153,6 +160,7 @@
 		F44198731794D1DB007C6375 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F43B8AD61797258E000999E6 /* QuartzCore.framework */,
 				F44198741794D1DB007C6375 /* UIKit.framework */,
 				F44198761794D1DB007C6375 /* Foundation.framework */,
 				F44198781794D1DB007C6375 /* CoreGraphics.framework */,
