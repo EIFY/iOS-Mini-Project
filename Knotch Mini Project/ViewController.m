@@ -26,7 +26,14 @@
     
     CGFloat navbarHeight = 42.5;
     CGFloat colorStripHeight = 232/2;//There is a 1-px strip of lighter shade below in the sample rendering. Not sure if it's intentional...
-    CGFloat nameLabelHeight = 144/2;
+    
+    CGFloat nameLabelHeight = 20.5;
+    CGFloat nameLabelXPosition = 223.0/2;
+    CGFloat nameLabelYPosition = navbarHeight + colorStripHeight + 26.0;
+    
+    CGFloat locationLabelHeight = 13;
+
+    
     UIColor* nameFontColor = [UIColor colorWithRed:39.0/255 green:49.0/255 blue:55.0/255 alpha:1.0];
     //NSMutableDictionary AllerTextAttributes
     
@@ -60,10 +67,10 @@
     
     profilePictureView.backgroundColor = [UIColor blackColor];
     
-    UILabel* nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, navbarHeight + colorStripHeight, 320, nameLabelHeight)];
+    UILabel* nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabelXPosition, nameLabelYPosition, 320.0 - nameLabelXPosition, nameLabelHeight)];
     
-    nameLabel.text = @"Anda Ganscaç";
-    nameLabel.textAlignment = NSTextAlignmentCenter;
+    nameLabel.text = @"Anda Gansca";//ç and ț
+    //nameLabel.textAlignment = NSTextAlignmentCenter;
     nameLabel.font = [UIFont fontWithName:@"Aller" size:17.5];
     nameLabel.textColor = nameFontColor;
     
@@ -80,7 +87,13 @@
     
     [containerScrollView insertSubview:nameLabel belowSubview:colorStripView];
     
-    //UIOffsetMake(0, 0), UITextAttributeTextShadowOffset
+    UILabel* locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabelXPosition - 0.5, nameLabelYPosition + nameLabelHeight, 320.0 - nameLabelXPosition, locationLabelHeight)];
+    
+    locationLabel.text = @"San Francisco, California";
+    locationLabel.font = [UIFont fontWithName:@"Aller-Light" size:10.5];
+    locationLabel.textColor = [UIColor grayColor];
+    
+    [containerScrollView addSubview:locationLabel];
     
     for (NSString* family in [UIFont familyNames])
     {
