@@ -26,6 +26,10 @@
 		F43B8AD01795DDB9000999E6 /* Lato-RegIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AC61795DDB9000999E6 /* Lato-RegIta.ttf */; };
 		F43B8AD517972552000999E6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43B8AD417972552000999E6 /* QuartzCore.framework */; };
 		F43B8AD71797258E000999E6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43B8AD61797258E000999E6 /* QuartzCore.framework */; };
+		F43B8ADD179893E9000999E6 /* colour-bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F43B8ADA179893E9000999E6 /* colour-bar@2x.png */; };
+		F43B8ADE179893E9000999E6 /* followers-bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F43B8ADB179893E9000999E6 /* followers-bar@2x.png */; };
+		F43B8ADF179893E9000999E6 /* following-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F43B8ADC179893E9000999E6 /* following-button@2x.png */; };
+		F43B8AE11798940B000999E6 /* topic-arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F43B8AE01798940B000999E6 /* topic-arrow@2x.png */; };
 		F44198751794D1DB007C6375 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44198741794D1DB007C6375 /* UIKit.framework */; };
 		F44198771794D1DB007C6375 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44198761794D1DB007C6375 /* Foundation.framework */; };
 		F44198791794D1DB007C6375 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44198781794D1DB007C6375 /* CoreGraphics.framework */; };
@@ -58,6 +62,10 @@
 		F43B8AC61795DDB9000999E6 /* Lato-RegIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-RegIta.ttf"; sourceTree = "<group>"; };
 		F43B8AD417972552000999E6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F43B8AD61797258E000999E6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F43B8ADA179893E9000999E6 /* colour-bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "colour-bar@2x.png"; sourceTree = "<group>"; };
+		F43B8ADB179893E9000999E6 /* followers-bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "followers-bar@2x.png"; sourceTree = "<group>"; };
+		F43B8ADC179893E9000999E6 /* following-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "following-button@2x.png"; sourceTree = "<group>"; };
+		F43B8AE01798940B000999E6 /* topic-arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topic-arrow@2x.png"; sourceTree = "<group>"; };
 		F44198711794D1DB007C6375 /* Knotch Mini Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Knotch Mini Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44198741794D1DB007C6375 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F44198761794D1DB007C6375 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -134,9 +142,21 @@
 		F43B8AD31795DDEF000999E6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F43B8AE21798941B000999E6 /* Images */,
 				F43B8AD21795DDE3000999E6 /* Fonts */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		F43B8AE21798941B000999E6 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				F43B8ADA179893E9000999E6 /* colour-bar@2x.png */,
+				F43B8ADB179893E9000999E6 /* followers-bar@2x.png */,
+				F43B8ADC179893E9000999E6 /* following-button@2x.png */,
+				F43B8AE01798940B000999E6 /* topic-arrow@2x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		F44198681794D1DB007C6375 = {
@@ -267,6 +287,10 @@
 				F43B8ACE1795DDB9000999E6 /* Lato-LigIta.ttf in Resources */,
 				F43B8ACF1795DDB9000999E6 /* Lato-Reg.ttf in Resources */,
 				F43B8AD01795DDB9000999E6 /* Lato-RegIta.ttf in Resources */,
+				F43B8ADD179893E9000999E6 /* colour-bar@2x.png in Resources */,
+				F43B8ADE179893E9000999E6 /* followers-bar@2x.png in Resources */,
+				F43B8ADF179893E9000999E6 /* following-button@2x.png in Resources */,
+				F43B8AE11798940B000999E6 /* topic-arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

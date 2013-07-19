@@ -9,5 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
+{
+    UINavigationBar* usernameNavbar;
+    
+    UIImageView* profilePictureView;
+    
+    UILabel* nameLabel;    
+    UILabel* locationLabel;
+    
+    UILabel* gloryCountLabel;
+    UILabel* followerCountLabel;
+    UILabel* followingCountLabel;
+}
 @end

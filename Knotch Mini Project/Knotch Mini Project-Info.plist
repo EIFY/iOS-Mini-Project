@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>Knotch</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
@@ -45,6 +45,16 @@
 		<string>Aller_LtIt.ttf</string>
 		<string>Aller_Rg.ttf</string>
 		<string>AllerDisplay.ttf</string>
+    <string>Lato-Bla.ttf</string>
+    <string>Lato-BlaIta.ttf</string>
+    <string>Lato-Bol.ttf</string>
+    <string>Lato-BolIta.ttf</string>
+    <string>Lato-Hai.ttf</string>
+    <string>Lato-HaiIta.ttf</string>
+    <string>Lato-Lig.ttf</string>
+    <string>Lato-LigIta.ttf</string>
+    <string>Lato-Reg.ttf</string>
+    <string>Lato-RegIta.ttf</string>
 	</array>
 </dict>
 </plist>
