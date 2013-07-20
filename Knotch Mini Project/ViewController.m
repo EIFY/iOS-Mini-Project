@@ -42,7 +42,7 @@
     usernameNavbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, navbarHeight)];
     [self.view addSubview:usernameNavbar];
     
-    [usernameNavbar pushNavigationItem:[[UINavigationItem alloc] initWithTitle:@"Anda Gansca"] animated:NO];
+    [usernameNavbar pushNavigationItem:[[UINavigationItem alloc] initWithTitle:@""] animated:NO];
     
     [usernameNavbar setBackgroundColor:[UIColor whiteColor]];
     usernameNavbar.tintColor = [UIColor whiteColor];
@@ -65,10 +65,11 @@
     [containerScrollView insertSubview:profilePictureView aboveSubview:colorStripView];
     
     profilePictureView.backgroundColor = [UIColor blackColor];
+    profilePictureView.contentMode = UIViewContentModeScaleAspectFill;
     
     nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabelXPosition, nameLabelYPosition, 320.0 - nameLabelXPosition, nameLabelHeight)];
     
-    nameLabel.text = @"Anda Gansca";
+    //nameLabel.text = @"Anda Gansca";
     //In the sample rendering, the spacing between 'An' and 'da' are both 3 pixels, but this unmodified UILabel renders 2 and 4 pixels respectively.
     //Also, UILabel's font rasterization gives lighter shade around the edges then the sample rendering. Not sure what the story is here...
     //On the positive side, this label is tall enough to render letters like ç and ț
@@ -80,7 +81,7 @@
     
     locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabelXPosition - 0.5, nameLabelYPosition + nameLabelHeight, 320.0 - nameLabelXPosition, locationLabelHeight)];
     
-    locationLabel.text = @"San Francisco, California";
+    //locationLabel.text = @"San Francisco, California";
     locationLabel.font = [UIFont fontWithName:@"Aller-Light" size:10.5];
     locationLabel.textColor = [UIColor grayColor];
     
@@ -97,9 +98,9 @@
     //These labels are also plagued by discrepancies in rasterization shades and letter spacing in comparison to the sample...
     
     
-    gloryCountLabel.text = @"3456";
-    followerCountLabel.text = @"5772";
-    followingCountLabel.text = @"6363";
+    //gloryCountLabel.text = @"3456";
+    //followerCountLabel.text = @"5772";
+    //followingCountLabel.text = @"6363";
     
     gloryCountLabel.font = followerCountLabel.font = followingCountLabel.font = [UIFont fontWithName:@"Lato-Bold" size:15.0];
     gloryCountLabel.textColor = followerCountLabel.textColor = followingCountLabel.textColor = [UIColor colorWithRed:15.0/255 green:15.0/255 blue:15.0/255 alpha:1.0];
@@ -112,6 +113,23 @@
     
     //The corresponding letter labels have true black font color, probably of Aller_Rg
     
+    UILabel* gloryTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 25, 79.0, 12)];;
+    UILabel* followersTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0 + 80, 25, 79.0, 12)];
+    UILabel* followingTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0 + 160, 25, 79.0, 12)];
+    
+    gloryTextLabel.text = @"Glory";
+    followersTextLabel.text = @"Followers";
+    followingTextLabel.text = @"Following";
+    
+    gloryTextLabel.font = followersTextLabel.font = followingTextLabel.font = [UIFont fontWithName:@"Aller-Light" size:10.0];
+    gloryTextLabel.textColor = followersTextLabel.textColor = followingTextLabel.textColor = [UIColor blackColor];
+    gloryTextLabel.backgroundColor = followersTextLabel.backgroundColor = followingTextLabel.backgroundColor = [UIColor clearColor];
+    gloryTextLabel.textAlignment = followersTextLabel.textAlignment = followingTextLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [followerBarImageView insertSubview:gloryTextLabel aboveSubview:gloryCountLabel];
+    [followerBarImageView insertSubview:followersTextLabel aboveSubview:followerCountLabel];
+    [followerBarImageView insertSubview:followingTextLabel aboveSubview:followingCountLabel];
+    
     UIImageView* followingButtonImageView = [[UIImageView alloc] initWithFrame:CGRectMake(followerBarWidth, followerBarYPosition, 320.0 - followerBarWidth, followerBarHeight)];
     followingButtonImageView.image = [UIImage imageNamed:@"following-button.png"];
     
@@ -121,7 +139,7 @@
     colourBarImageView.image = [UIImage imageNamed:@"colour-bar.png"];
     
     [containerScrollView addSubview:colourBarImageView];
-    
+    /*
     for (NSString* family in [UIFont familyNames])
     {
         NSLog(@"%@", family);
@@ -131,7 +149,91 @@
             NSLog(@"  %@", name);
         }
     }
+    */
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSString* userId = //@"500e3b57bbcd08696800000a";//Stephanie Volftsun
+                       @"5019296f1f5dc55304003c58";//Anda Gansca
+                       //@"51953d29cf0e230f5a001cc6";//Lars Eilstrup Rasmussen
+                       //@"5010a4e5e22117476d0000f1";//Lana Volftsun
+                       //@"51749a9c3b0d87951700165f";//Kyung Jae Ha
     
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dev.knotch.it:8080/miniProject/user_feed/%@/5", userId]]
+                                    cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                    timeoutInterval:10];
+    
+    [request setHTTPMethod: @"GET"];
+    
+    
+    //NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    {
+        
+        NSDictionary* json = [NSJSONSerialization
+                              JSONObjectWithData:data
+                              
+                              options:kNilOptions
+                              error:&error];
+        
+        //NSLog([json description]);
+        
+        NSDictionary* userInfo = [json objectForKey:@"userInfo"];
+        
+        NSMutableURLRequest *pictureRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[userInfo objectForKey:@"profilePicUrl"]]
+                                               cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                               timeoutInterval:10];
+        
+        [pictureRequest setHTTPMethod:@"GET"];
+        
+        [NSURLConnection sendAsynchronousRequest:pictureRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+         {
+             profilePictureView.image = [UIImage imageWithData:data];
+             
+         }];
+         
+        
+        usernameNavbar.topItem.title = nameLabel.text = [userInfo objectForKey:@"name"];
+        
+        NSString* locationString = [userInfo objectForKey:@"location"];
+        
+        if (locationString) {
+            locationLabel.text = locationString;
+        }
+        else
+            locationLabel.text = @"San Francisco, California";  //For some reason, the location data is missing for Anda.
+                                                                //If I don't know where you are, you are in SF :D
+        
+        gloryCountLabel.text = [[userInfo objectForKey:@"num_glory"] stringValue];
+        followerCountLabel.text = [[userInfo objectForKey:@"num_followers"] stringValue];
+        followingCountLabel.text = [[userInfo objectForKey:@"num_following"] stringValue];
+        
+    }];
+    
+    /*
+    NSError *requestError;
+    NSURLResponse *urlResponse = nil;
+    
+    NSData *response1 = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+    
+    NSDictionary* json = [NSJSONSerialization
+                          JSONObjectWithData:response1
+                          
+                          options:kNilOptions
+                          error:&requestError];
+    
+    //NSLog([json description]);
+    
+    NSDictionary* userInfo = [json objectForKey:@"userInfo"];
+    
+    nameLabel.text = [userInfo objectForKey:@"name"];
+    gloryCountLabel.text = [[userInfo objectForKey:@"num_glory"] stringValue];
+    followerCountLabel.text = [[userInfo objectForKey:@"num_followers"] stringValue];
+    followingCountLabel.text = [[userInfo objectForKey:@"num_following"] stringValue];
+    */
 }
 
 - (void)didReceiveMemoryWarning
