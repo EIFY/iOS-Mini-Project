@@ -21,8 +21,7 @@
     [super viewDidLoad];
 	  // Do any additional setup after loading the view, typically from a nib.
     
-    //NSLog(@"%f, %f", self.view.frame.size.width, self.view.frame.size.height);
-    //Sanity check: 320.000000, 548.000000 indeed
+    CGFloat totalWidth = self.view.frame.size.width, totalHeight = self.view.frame.size.height;
     
     CGFloat navbarHeight = 42.5;
     CGFloat colorStripHeight = 232/2;//There is a 1-px strip of lighter shade below in the sample rendering. Not sure if it's intentional...
@@ -37,9 +36,15 @@
     CGFloat followerBarHeight = 89.0/2;
     CGFloat followerBarWidth = 479.0/2;
     
+    CGFloat colourBarYPosition = followerBarYPosition + followerBarHeight;
+    CGFloat colourBarHeight = 78.0/2;
+    
+    CGFloat scrollViewContentHeight = totalHeight + colourBarYPosition - navbarHeight;
+    CGFloat knotchTableViewYPosition = colourBarYPosition + colourBarHeight;
+    
     UIColor* nameFontColor = [UIColor colorWithRed:39.0/255 green:49.0/255 blue:55.0/255 alpha:1.0];
     
-    usernameNavbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, navbarHeight)];
+    usernameNavbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, totalWidth, navbarHeight)];
     [self.view addSubview:usernameNavbar];
     
     [usernameNavbar pushNavigationItem:[[UINavigationItem alloc] initWithTitle:@""] animated:NO];
@@ -53,8 +58,9 @@
     
     UIScrollView* containerScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     containerScrollView.backgroundColor = [UIColor whiteColor];
+    containerScrollView.showsVerticalScrollIndicator = NO;
     
-    UIView* colorStripView = [[UIView alloc] initWithFrame:CGRectMake(0, navbarHeight, 320, colorStripHeight)];
+    UIView* colorStripView = [[UIView alloc] initWithFrame:CGRectMake(0, navbarHeight, totalWidth, colorStripHeight)];
     colorStripView.backgroundColor = [UIColor colorWithRed:1.0 green:0.8 blue:0.263 alpha:1.0];//Sentiment 14
     
     [containerScrollView addSubview:colorStripView];
@@ -64,10 +70,10 @@
     profilePictureView = [[UIImageView alloc] initWithFrame:CGRectMake(31.0/2, navbarHeight+192/2, 167.0/2, 153.0/2)];//Bizarre layout, but it's what it is...
     [containerScrollView insertSubview:profilePictureView aboveSubview:colorStripView];
     
-    profilePictureView.backgroundColor = [UIColor blackColor];
+    profilePictureView.backgroundColor = [UIColor clearColor];
     profilePictureView.contentMode = UIViewContentModeScaleAspectFill;
     
-    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabelXPosition, nameLabelYPosition, 320.0 - nameLabelXPosition, nameLabelHeight)];
+    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabelXPosition, nameLabelYPosition, totalWidth - nameLabelXPosition, nameLabelHeight)];
     
     //nameLabel.text = @"Anda Gansca";
     //In the sample rendering, the spacing between 'An' and 'da' are both 3 pixels, but this unmodified UILabel renders 2 and 4 pixels respectively.
@@ -79,7 +85,7 @@
     
     [containerScrollView insertSubview:nameLabel belowSubview:colorStripView];
     
-    locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabelXPosition - 0.5, nameLabelYPosition + nameLabelHeight, 320.0 - nameLabelXPosition, locationLabelHeight)];
+    locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabelXPosition - 0.5, nameLabelYPosition + nameLabelHeight, totalWidth - nameLabelXPosition, locationLabelHeight)];
     
     //locationLabel.text = @"San Francisco, California";
     locationLabel.font = [UIFont fontWithName:@"Aller-Light" size:10.5];
@@ -130,15 +136,22 @@
     [followerBarImageView insertSubview:followersTextLabel aboveSubview:followerCountLabel];
     [followerBarImageView insertSubview:followingTextLabel aboveSubview:followingCountLabel];
     
-    UIImageView* followingButtonImageView = [[UIImageView alloc] initWithFrame:CGRectMake(followerBarWidth, followerBarYPosition, 320.0 - followerBarWidth, followerBarHeight)];
+    UIImageView* followingButtonImageView = [[UIImageView alloc] initWithFrame:CGRectMake(followerBarWidth, followerBarYPosition, totalWidth - followerBarWidth, followerBarHeight)];
     followingButtonImageView.image = [UIImage imageNamed:@"following-button.png"];
     
     [containerScrollView addSubview:followingButtonImageView];
     
-    UIImageView* colourBarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, followerBarYPosition + followerBarHeight, 320.0, 78.0/2)];
+    UIImageView* colourBarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, colourBarYPosition, totalWidth, colourBarHeight)];
     colourBarImageView.image = [UIImage imageNamed:@"colour-bar.png"];
     
     [containerScrollView addSubview:colourBarImageView];
+    
+    containerScrollView.contentSize = CGSizeMake(totalWidth, scrollViewContentHeight);//Just big enough to bring colourBarImageView in touch with the nav bar
+    
+    UITableView* knotchTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, knotchTableViewYPosition, totalWidth, scrollViewContentHeight - knotchTableViewYPosition) style:UITableViewStylePlain];
+    
+    [containerScrollView addSubview:knotchTableView];
+    
     /*
     for (NSString* family in [UIFont familyNames])
     {
