@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     UINavigationBar* usernameNavbar;
     
@@ -20,5 +20,10 @@
     UILabel* gloryCountLabel;
     UILabel* followerCountLabel;
     UILabel* followingCountLabel;
+    
+    UITableView* knotchTableView;
+    
+    NSArray* KnotchSentimentColors;
+    NSArray* knotches;
 }
 @end

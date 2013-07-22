@@ -10,6 +10,13 @@
 
 #import "ViewController.h"
 
+UIColor* UIColorFromRGB(int rgbValue)
+{
+    return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
+}
+
+const int COLOR_BLOCK_TAG = 1000;
+
 @interface ViewController ()
 
 @end
@@ -20,6 +27,18 @@
 {
     [super viewDidLoad];
 	  // Do any additional setup after loading the view, typically from a nib.
+    
+    KnotchSentimentColors = @[UIColorFromRGB(0x2e5ca6),
+                              UIColorFromRGB(0x586db9),
+                              UIColorFromRGB(0x008fd0),
+                              UIColorFromRGB(0x57cccc),
+                              UIColorFromRGB(0xceebee),
+                              UIColorFromRGB(0xffffff),
+                              UIColorFromRGB(0xffeec3),
+                              UIColorFromRGB(0xffcc43),
+                              UIColorFromRGB(0xffa02d),
+                              UIColorFromRGB(0xff6d3a),
+                              UIColorFromRGB(0xee443a)];
     
     CGFloat totalWidth = self.view.frame.size.width, totalHeight = self.view.frame.size.height;
     
@@ -51,7 +70,11 @@
     
     [usernameNavbar setBackgroundColor:[UIColor whiteColor]];
     usernameNavbar.tintColor = [UIColor whiteColor];
-    usernameNavbar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:nameFontColor, UITextAttributeTextColor, [UIFont fontWithName:@"Aller" size:15], UITextAttributeFont, [UIColor clearColor], UITextAttributeTextShadowColor, nil];
+    
+    usernameNavbar.titleTextAttributes = @{UITextAttributeTextColor:nameFontColor,
+                                           UITextAttributeFont:[UIFont fontWithName:@"Aller" size:15],
+                                           UITextAttributeTextShadowColor:[UIColor clearColor]};
+    
     [usernameNavbar setTitleVerticalPositionAdjustment:3 forBarMetrics:UIBarMetricsDefault];
     
     usernameNavbar.layer.masksToBounds = YES;//Eliminates shadow
@@ -61,7 +84,7 @@
     containerScrollView.showsVerticalScrollIndicator = NO;
     
     UIView* colorStripView = [[UIView alloc] initWithFrame:CGRectMake(0, navbarHeight, totalWidth, colorStripHeight)];
-    colorStripView.backgroundColor = [UIColor colorWithRed:1.0 green:0.8 blue:0.263 alpha:1.0];//Sentiment 14
+    colorStripView.backgroundColor = KnotchSentimentColors[14/2];//Sentiment 14
     
     [containerScrollView addSubview:colorStripView];
     
@@ -148,7 +171,13 @@
     
     containerScrollView.contentSize = CGSizeMake(totalWidth, scrollViewContentHeight);//Just big enough to bring colourBarImageView in touch with the nav bar
     
-    UITableView* knotchTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, knotchTableViewYPosition, totalWidth, scrollViewContentHeight - knotchTableViewYPosition) style:UITableViewStylePlain];
+    knotchTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, knotchTableViewYPosition, totalWidth, scrollViewContentHeight - knotchTableViewYPosition) style:UITableViewStylePlain];
+    knotchTableView.sectionHeaderHeight = 50;
+    knotchTableView.rowHeight = 74;
+    
+    //knotches = @[];
+    knotchTableView.delegate = self;
+    knotchTableView.dataSource = self;
     
     [containerScrollView addSubview:knotchTableView];
     
@@ -174,7 +203,7 @@
                        //@"51749a9c3b0d87951700165f";//Kyung Jae Ha
     
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dev.knotch.it:8080/miniProject/user_feed/%@/5", userId]]
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dev.knotch.it:8080/miniProject/user_feed/%@/10", userId]]
                                     cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                     timeoutInterval:10];
     
@@ -194,7 +223,7 @@
         
         //NSLog([json description]);
         
-        NSDictionary* userInfo = [json objectForKey:@"userInfo"];
+        NSDictionary* userInfo = json[@"userInfo"];
         
         NSMutableURLRequest *pictureRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[userInfo objectForKey:@"profilePicUrl"]]
                                                cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
@@ -209,9 +238,9 @@
          }];
          
         
-        usernameNavbar.topItem.title = nameLabel.text = [userInfo objectForKey:@"name"];
+        usernameNavbar.topItem.title = nameLabel.text = userInfo[@"name"];
         
-        NSString* locationString = [userInfo objectForKey:@"location"];
+        NSString* locationString = userInfo[@"location"];
         
         if (locationString) {
             locationLabel.text = locationString;
@@ -220,10 +249,13 @@
             locationLabel.text = @"San Francisco, California";  //For some reason, the location data is missing for Anda.
                                                                 //If I don't know where you are, you are in SF :D
         
-        gloryCountLabel.text = [[userInfo objectForKey:@"num_glory"] stringValue];
-        followerCountLabel.text = [[userInfo objectForKey:@"num_followers"] stringValue];
-        followingCountLabel.text = [[userInfo objectForKey:@"num_following"] stringValue];
+        gloryCountLabel.text = [userInfo[@"num_glory"] stringValue];
+        followerCountLabel.text = [userInfo[@"num_followers"] stringValue];
+        followingCountLabel.text = [userInfo[@"num_following"] stringValue];
         
+        knotches = json[@"knotches"];
+        
+        [knotchTableView reloadData];
     }];
     
     /*
@@ -247,6 +279,69 @@
     followerCountLabel.text = [[userInfo objectForKey:@"num_followers"] stringValue];
     followingCountLabel.text = [[userInfo objectForKey:@"num_following"] stringValue];
     */
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KnotchCell"];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"KnotchCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        UIView* colorBlockView = [[UIView alloc] initWithFrame:CGRectMake(33.0/2, 0, 580/2, 130/2)];
+        colorBlockView.tag = COLOR_BLOCK_TAG;
+        
+        [cell.contentView insertSubview:colorBlockView belowSubview:cell.detailTextLabel];
+    }
+    
+    NSDictionary* knotch = knotches[indexPath.section];
+    
+    cell.textLabel.text = @"“";
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+    
+    cell.detailTextLabel.text = knotch[@"comment"];
+    cell.detailTextLabel.textColor = [UIColor blackColor];
+    cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+    
+    //cell.contentView.frame = CGRectMake(10, 0, 300, 74);
+    //cell.textLabel.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
+    
+    //cell.backgroundView.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
+    //cell.imageView.frame = CGRectMake(10, 10, 50, 50);
+    //cell.backgroundColor = cell.imageView.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
+    //[cell bringSubviewToFront:cell.imageView];
+    
+    //Or spinner:
+    //UIActivityIndicatorView
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary* knotch = knotches[indexPath.section];
+    //cell.contentView.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
+    
+    //cell.detailTextLabel.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
+    
+    UIView* colorBlockView = [cell viewWithTag:COLOR_BLOCK_TAG];
+    
+    colorBlockView.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
+    
+    //cell.imageView.frame = CGRectMake(10, 10, 50, 50);
+    //cell.imageView.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
+    //[cell.contentView bringSubviewToFront:cell.imageView];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [knotches count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
 }
 
 - (void)didReceiveMemoryWarning
