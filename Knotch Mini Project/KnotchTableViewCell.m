@@ -37,7 +37,7 @@ CGFloat KnotchTextMargin = 8;
     self.textLabel.backgroundColor = [UIColor clearColor];
     
     self.detailTextLabel.frame = CGRectMake(KnotchMargin + KnotchTextMargin, 10, self.frame.size.width - (KnotchMargin + KnotchTextMargin)*2, 55);
-    self.detailTextLabel.font = [UIFont fontWithName:@"Aller-Light" size:12.5];
+    self.detailTextLabel.font = [UIFont fontWithName:@"Aller-Light" size:12.5];//I was told to use Aller, but Aller-Light is more pleasant here :)
     self.detailTextLabel.numberOfLines = 3;
     self.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.detailTextLabel.textColor = [UIColor blackColor];

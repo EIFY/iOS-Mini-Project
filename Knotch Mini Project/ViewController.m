@@ -259,11 +259,17 @@ CGFloat KnotchContentHeight = 74;
             
             offset.y += knotchTableView.contentOffset.y;
             
+            //Protection against rare madness
+            if (offset.y > 233.0)
+                offset.y = 233.0;
+            else if (offset.y < 0.0)
+                offset.y = 0.0;
+            
             containerScrollView.contentOffset = offset;
             
             knotchTableView.contentOffset = CGPointZero;
         }
-
+        
     }
 
 }
