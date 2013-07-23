@@ -10,14 +10,12 @@
 
 #import "ViewController.h"
 
+#import "KnotchColor.h"
+
 #import "KnotchTableViewCell.h"
 
-UIColor* UIColorFromRGB(int rgbValue)
-{
-    return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
-}
-
-//const int COLOR_BLOCK_TAG = 1000;
+CGFloat KnotchTopicHeight = 52;
+CGFloat KnotchContentHeight = 74;
 
 @interface ViewController ()
 
@@ -29,27 +27,9 @@ UIColor* UIColorFromRGB(int rgbValue)
 {
     [super viewDidLoad];
 	  // Do any additional setup after loading the view, typically from a nib.
-    
-    KnotchSentimentColors = @[UIColorFromRGB(0x2e5ca6),
-                              UIColorFromRGB(0x586db9),
-                              UIColorFromRGB(0x008fd0),
-                              UIColorFromRGB(0x57cccc),
-                              UIColorFromRGB(0xceebee),
-                              UIColorFromRGB(0xffffff),
-                              UIColorFromRGB(0xffeec3),
-                              UIColorFromRGB(0xffcc43),
-                              UIColorFromRGB(0xffa02d),
-                              UIColorFromRGB(0xff6d3a),
-                              UIColorFromRGB(0xee443a)];
-    
+
     totalWidth = self.view.frame.size.width;
     totalHeight = self.view.frame.size.height;
-    
-    knotchTopicHeight = 52;
-    knotchContentHeight = 74;
-    
-    knotchMargin = 15;
-    knotchTextMargin = 8;
     
     CGFloat navbarHeight = 42.5;
     CGFloat colorStripHeight = 232/2;//There is a 1-px strip of lighter shade below in the sample rendering. Not sure if it's intentional...
@@ -88,12 +68,15 @@ UIColor* UIColorFromRGB(int rgbValue)
     
     usernameNavbar.layer.masksToBounds = YES;//Eliminates shadow
     
-    UIScrollView* containerScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    containerScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    
+    //containerScrollView.bounces = NO;
+    containerScrollView.delegate = self;
     containerScrollView.backgroundColor = [UIColor whiteColor];
     containerScrollView.showsVerticalScrollIndicator = NO;
     
     UIView* colorStripView = [[UIView alloc] initWithFrame:CGRectMake(0, navbarHeight, totalWidth, colorStripHeight)];
-    colorStripView.backgroundColor = KnotchSentimentColors[14/2];//Sentiment 14
+    colorStripView.backgroundColor = [KnotchColor sentiment:14];//Sentiment 14
     
     [containerScrollView addSubview:colorStripView];
     
@@ -135,7 +118,6 @@ UIColor* UIColorFromRGB(int rgbValue)
     followingCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.5 + 160, 0, 78.0, followerBarHeight - 12)];
     //These labels are also plagued by discrepancies in rasterization shades and letter spacing in comparison to the sample...
     
-    
     //gloryCountLabel.text = @"3456";
     //followerCountLabel.text = @"5772";
     //followingCountLabel.text = @"6363";
@@ -148,8 +130,6 @@ UIColor* UIColorFromRGB(int rgbValue)
     [followerBarImageView addSubview:gloryCountLabel];
     [followerBarImageView addSubview:followerCountLabel];
     [followerBarImageView addSubview:followingCountLabel];
-    
-    //The corresponding letter labels have true black font color, probably of Aller_Rg
     
     UILabel* gloryTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 25, 79.0, 12)];;
     UILabel* followersTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0 + 80, 25, 79.0, 12)];
@@ -181,16 +161,15 @@ UIColor* UIColorFromRGB(int rgbValue)
     containerScrollView.contentSize = CGSizeMake(totalWidth, scrollViewContentHeight);//Just big enough to bring colourBarImageView in touch with the nav bar
     
     knotchTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, knotchTableViewYPosition, totalWidth, scrollViewContentHeight - knotchTableViewYPosition) style:UITableViewStylePlain];
-    knotchTableView.sectionHeaderHeight = knotchTopicHeight;
-    knotchTableView.rowHeight = knotchContentHeight;
+    knotchTableView.sectionHeaderHeight = KnotchTopicHeight;
+    knotchTableView.rowHeight = KnotchContentHeight;
     
-    //knotches = @[];
     knotchTableView.delegate = self;
     knotchTableView.dataSource = self;
     
     [containerScrollView addSubview:knotchTableView];
     
-    
+    /*
     for (NSString* family in [UIFont familyNames])
     {
         NSLog(@"%@", family);
@@ -200,7 +179,7 @@ UIColor* UIColorFromRGB(int rgbValue)
             NSLog(@"  %@", name);
         }
     }
-    
+    */
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -212,7 +191,7 @@ UIColor* UIColorFromRGB(int rgbValue)
                        //@"51749a9c3b0d87951700165f";//Kyung Jae Ha
     
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dev.knotch.it:8080/miniProject/user_feed/%@/10", userId]]
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dev.knotch.it:8080/miniProject/user_feed/%@/40", userId]]
                                     cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                     timeoutInterval:10];
     
@@ -266,35 +245,34 @@ UIColor* UIColorFromRGB(int rgbValue)
         
         [knotchTableView reloadData];
     }];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //"Transfer" the y offset from the knotch table to the container scroll view if 1. more of the table can be shown or 2. we are at the top of the table, like the official app
     
-    /*
-    NSError *requestError;
-    NSURLResponse *urlResponse = nil;
-    
-    NSData *response1 = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
-    
-    NSDictionary* json = [NSJSONSerialization
-                          JSONObjectWithData:response1
-                          
-                          options:kNilOptions
-                          error:&requestError];
-    
-    //NSLog([json description]);
-    
-    NSDictionary* userInfo = [json objectForKey:@"userInfo"];
-    
-    nameLabel.text = [userInfo objectForKey:@"name"];
-    gloryCountLabel.text = [[userInfo objectForKey:@"num_glory"] stringValue];
-    followerCountLabel.text = [[userInfo objectForKey:@"num_followers"] stringValue];
-    followingCountLabel.text = [[userInfo objectForKey:@"num_following"] stringValue];
-    */
+    if (scrollView == knotchTableView) {
+        
+        if (containerScrollView.contentOffset.y < 233.0 || knotchTableView.contentOffset.y < 0)
+        {
+            CGPoint offset = containerScrollView.contentOffset;
+            
+            offset.y += knotchTableView.contentOffset.y;
+            
+            containerScrollView.contentOffset = offset;
+            
+            knotchTableView.contentOffset = CGPointZero;
+        }
+
+    }
+
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     CGFloat topicArrowImageXPosition = 576/2;
     
-    UIView* sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, totalWidth, knotchTopicHeight)];
+    UIView* sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, totalWidth, KnotchTopicHeight)];
     sectionHeaderView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.947];//Reverse-engineered alpha value from the official app store version
     
     UIImageView* topicArrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(topicArrowImageXPosition, 25.0/2, 17, 27)];
@@ -302,7 +280,7 @@ UIColor* UIColorFromRGB(int rgbValue)
     
     [sectionHeaderView addSubview:topicArrowImageView];
     
-    UILabel* knotchTopicLabel = [[UILabel alloc] initWithFrame:CGRectMake(knotchMargin, 0, topicArrowImageXPosition - knotchMargin, knotchTopicHeight)];
+    UILabel* knotchTopicLabel = [[UILabel alloc] initWithFrame:CGRectMake(KnotchMargin, 0, topicArrowImageXPosition - KnotchMargin, KnotchTopicHeight)];
     knotchTopicLabel.text = knotches[section][@"topic"];//@"Women In Dresses";
     knotchTopicLabel.font = [UIFont fontWithName:@"Aller" size:15];
     knotchTopicLabel.textColor = nameFontColor;
@@ -324,7 +302,7 @@ UIColor* UIColorFromRGB(int rgbValue)
     
     NSDictionary* knotch = knotches[indexPath.section];
     
-    cell.colorBlockView.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
+    cell.sentiment = [knotch[@"sentiment"] intValue];//cell.colorBlockView.backgroundColor = [KnotchColor sentiment:[knotch[@"sentiment"] intValue]];//KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
     cell.detailTextLabel.text = knotch[@"comment"];
 
     //Or spinner:

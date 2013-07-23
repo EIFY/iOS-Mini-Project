@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ViewController : UIViewController <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     CGFloat totalWidth, totalHeight;
     
     UIColor* nameFontColor;//Also turned out to be the font color for knotch topic
     
     UINavigationBar* usernameNavbar;
+    
+    UIScrollView* containerScrollView;
     
     UIImageView* profilePictureView;
     
@@ -25,14 +27,8 @@
     UILabel* followerCountLabel;
     UILabel* followingCountLabel;
     
-    CGFloat knotchTopicHeight;
-    CGFloat knotchContentHeight;
-    CGFloat knotchMargin;
-    CGFloat knotchTextMargin;
-    
     UITableView* knotchTableView;
     
-    NSArray* KnotchSentimentColors;
     NSArray* knotches;
 }
 @end

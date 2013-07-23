@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+CGFloat KnotchMargin;
+CGFloat KnotchTextMargin;
+
 @interface KnotchTableViewCell : UITableViewCell
 
 @property (readonly) UIView* colorBlockView;
+@property (assign) int sentiment;
 
 @end

@@ -41,6 +41,8 @@
 		F441988B1794D1DB007C6375 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F441988A1794D1DB007C6375 /* Default-568h@2x.png */; };
 		F441988E1794D1DB007C6375 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F441988D1794D1DB007C6375 /* ViewController.m */; };
 		F4AC17DE179E2A25000252D7 /* KnotchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC17DD179E2A25000252D7 /* KnotchTableViewCell.m */; };
+		F4AC17E0179E69AF000252D7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4AC17DF179E69AF000252D7 /* Icon@2x.png */; };
+		F4AC17E3179F10BC000252D7 /* KnotchColor.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC17E2179F10BC000252D7 /* KnotchColor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +86,9 @@
 		F441988D1794D1DB007C6375 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F4AC17DC179E2A25000252D7 /* KnotchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnotchTableViewCell.h; sourceTree = "<group>"; };
 		F4AC17DD179E2A25000252D7 /* KnotchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnotchTableViewCell.m; sourceTree = "<group>"; };
+		F4AC17DF179E69AF000252D7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		F4AC17E1179F10BC000252D7 /* KnotchColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnotchColor.h; sourceTree = "<group>"; };
+		F4AC17E2179F10BC000252D7 /* KnotchColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnotchColor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,10 +203,12 @@
 				F44198841794D1DB007C6375 /* AppDelegate.m */,
 				F441988C1794D1DB007C6375 /* ViewController.h */,
 				F441988D1794D1DB007C6375 /* ViewController.m */,
-				F43B8AD31795DDEF000999E6 /* Resources */,
-				F441987B1794D1DB007C6375 /* Supporting Files */,
 				F4AC17DC179E2A25000252D7 /* KnotchTableViewCell.h */,
 				F4AC17DD179E2A25000252D7 /* KnotchTableViewCell.m */,
+				F4AC17E1179F10BC000252D7 /* KnotchColor.h */,
+				F4AC17E2179F10BC000252D7 /* KnotchColor.m */,
+				F43B8AD31795DDEF000999E6 /* Resources */,
+				F441987B1794D1DB007C6375 /* Supporting Files */,
 			);
 			path = "Knotch Mini Project";
 			sourceTree = "<group>";
@@ -213,6 +220,7 @@
 				F441987D1794D1DB007C6375 /* InfoPlist.strings */,
 				F44198801794D1DB007C6375 /* main.m */,
 				F44198821794D1DB007C6375 /* Knotch Mini Project-Prefix.pch */,
+				F4AC17DF179E69AF000252D7 /* Icon@2x.png */,
 				F44198861794D1DB007C6375 /* Default.png */,
 				F44198881794D1DB007C6375 /* Default@2x.png */,
 				F441988A1794D1DB007C6375 /* Default-568h@2x.png */,
@@ -296,6 +304,7 @@
 				F43B8ADE179893E9000999E6 /* followers-bar@2x.png in Resources */,
 				F43B8ADF179893E9000999E6 /* following-button@2x.png in Resources */,
 				F43B8AE11798940B000999E6 /* topic-arrow@2x.png in Resources */,
+				F4AC17E0179E69AF000252D7 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +319,7 @@
 				F44198851794D1DB007C6375 /* AppDelegate.m in Sources */,
 				F441988E1794D1DB007C6375 /* ViewController.m in Sources */,
 				F4AC17DE179E2A25000252D7 /* KnotchTableViewCell.m in Sources */,
+				F4AC17E3179F10BC000252D7 /* KnotchColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
