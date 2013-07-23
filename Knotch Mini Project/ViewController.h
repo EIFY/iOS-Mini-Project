@@ -10,6 +10,10 @@
 
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
+    CGFloat totalWidth, totalHeight;
+    
+    UIColor* nameFontColor;//Also turned out to be the font color for knotch topic
+    
     UINavigationBar* usernameNavbar;
     
     UIImageView* profilePictureView;
@@ -20,6 +24,11 @@
     UILabel* gloryCountLabel;
     UILabel* followerCountLabel;
     UILabel* followingCountLabel;
+    
+    CGFloat knotchTopicHeight;
+    CGFloat knotchContentHeight;
+    CGFloat knotchMargin;
+    CGFloat knotchTextMargin;
     
     UITableView* knotchTableView;
     

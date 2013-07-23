@@ -40,6 +40,7 @@
 		F44198891794D1DB007C6375 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F44198881794D1DB007C6375 /* Default@2x.png */; };
 		F441988B1794D1DB007C6375 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F441988A1794D1DB007C6375 /* Default-568h@2x.png */; };
 		F441988E1794D1DB007C6375 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F441988D1794D1DB007C6375 /* ViewController.m */; };
+		F4AC17DE179E2A25000252D7 /* KnotchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC17DD179E2A25000252D7 /* KnotchTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,8 @@
 		F441988A1794D1DB007C6375 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F441988C1794D1DB007C6375 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		F441988D1794D1DB007C6375 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F4AC17DC179E2A25000252D7 /* KnotchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnotchTableViewCell.h; sourceTree = "<group>"; };
+		F4AC17DD179E2A25000252D7 /* KnotchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnotchTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +200,8 @@
 				F441988D1794D1DB007C6375 /* ViewController.m */,
 				F43B8AD31795DDEF000999E6 /* Resources */,
 				F441987B1794D1DB007C6375 /* Supporting Files */,
+				F4AC17DC179E2A25000252D7 /* KnotchTableViewCell.h */,
+				F4AC17DD179E2A25000252D7 /* KnotchTableViewCell.m */,
 			);
 			path = "Knotch Mini Project";
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 				F44198811794D1DB007C6375 /* main.m in Sources */,
 				F44198851794D1DB007C6375 /* AppDelegate.m in Sources */,
 				F441988E1794D1DB007C6375 /* ViewController.m in Sources */,
+				F4AC17DE179E2A25000252D7 /* KnotchTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

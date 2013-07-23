@@ -10,12 +10,14 @@
 
 #import "ViewController.h"
 
+#import "KnotchTableViewCell.h"
+
 UIColor* UIColorFromRGB(int rgbValue)
 {
     return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
 }
 
-const int COLOR_BLOCK_TAG = 1000;
+//const int COLOR_BLOCK_TAG = 1000;
 
 @interface ViewController ()
 
@@ -40,7 +42,14 @@ const int COLOR_BLOCK_TAG = 1000;
                               UIColorFromRGB(0xff6d3a),
                               UIColorFromRGB(0xee443a)];
     
-    CGFloat totalWidth = self.view.frame.size.width, totalHeight = self.view.frame.size.height;
+    totalWidth = self.view.frame.size.width;
+    totalHeight = self.view.frame.size.height;
+    
+    knotchTopicHeight = 52;
+    knotchContentHeight = 74;
+    
+    knotchMargin = 15;
+    knotchTextMargin = 8;
     
     CGFloat navbarHeight = 42.5;
     CGFloat colorStripHeight = 232/2;//There is a 1-px strip of lighter shade below in the sample rendering. Not sure if it's intentional...
@@ -61,7 +70,7 @@ const int COLOR_BLOCK_TAG = 1000;
     CGFloat scrollViewContentHeight = totalHeight + colourBarYPosition - navbarHeight;
     CGFloat knotchTableViewYPosition = colourBarYPosition + colourBarHeight;
     
-    UIColor* nameFontColor = [UIColor colorWithRed:39.0/255 green:49.0/255 blue:55.0/255 alpha:1.0];
+    nameFontColor = [UIColor colorWithRed:39.0/255 green:49.0/255 blue:55.0/255 alpha:1.0];
     
     usernameNavbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, totalWidth, navbarHeight)];
     [self.view addSubview:usernameNavbar];
@@ -172,8 +181,8 @@ const int COLOR_BLOCK_TAG = 1000;
     containerScrollView.contentSize = CGSizeMake(totalWidth, scrollViewContentHeight);//Just big enough to bring colourBarImageView in touch with the nav bar
     
     knotchTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, knotchTableViewYPosition, totalWidth, scrollViewContentHeight - knotchTableViewYPosition) style:UITableViewStylePlain];
-    knotchTableView.sectionHeaderHeight = 50;
-    knotchTableView.rowHeight = 74;
+    knotchTableView.sectionHeaderHeight = knotchTopicHeight;
+    knotchTableView.rowHeight = knotchContentHeight;
     
     //knotches = @[];
     knotchTableView.delegate = self;
@@ -181,7 +190,7 @@ const int COLOR_BLOCK_TAG = 1000;
     
     [containerScrollView addSubview:knotchTableView];
     
-    /*
+    
     for (NSString* family in [UIFont familyNames])
     {
         NSLog(@"%@", family);
@@ -191,7 +200,7 @@ const int COLOR_BLOCK_TAG = 1000;
             NSLog(@"  %@", name);
         }
     }
-    */
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -281,57 +290,47 @@ const int COLOR_BLOCK_TAG = 1000;
     */
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    CGFloat topicArrowImageXPosition = 576/2;
+    
+    UIView* sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, totalWidth, knotchTopicHeight)];
+    sectionHeaderView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.947];//Reverse-engineered alpha value from the official app store version
+    
+    UIImageView* topicArrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(topicArrowImageXPosition, 25.0/2, 17, 27)];
+    topicArrowImageView.image = [UIImage imageNamed:@"topic-arrow.png"];
+    
+    [sectionHeaderView addSubview:topicArrowImageView];
+    
+    UILabel* knotchTopicLabel = [[UILabel alloc] initWithFrame:CGRectMake(knotchMargin, 0, topicArrowImageXPosition - knotchMargin, knotchTopicHeight)];
+    knotchTopicLabel.text = knotches[section][@"topic"];//@"Women In Dresses";
+    knotchTopicLabel.font = [UIFont fontWithName:@"Aller" size:15];
+    knotchTopicLabel.textColor = nameFontColor;
+    knotchTopicLabel.backgroundColor = [UIColor clearColor];
+    
+    [sectionHeaderView addSubview:knotchTopicLabel];
+    
+    return sectionHeaderView;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KnotchCell"];
+    KnotchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KnotchCell"];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"KnotchCell"];
+        cell = [[KnotchTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"KnotchCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        UIView* colorBlockView = [[UIView alloc] initWithFrame:CGRectMake(33.0/2, 0, 580/2, 130/2)];
-        colorBlockView.tag = COLOR_BLOCK_TAG;
-        
-        [cell.contentView insertSubview:colorBlockView belowSubview:cell.detailTextLabel];
     }
     
     NSDictionary* knotch = knotches[indexPath.section];
     
-    cell.textLabel.text = @"“";
-    cell.textLabel.backgroundColor = [UIColor clearColor];
-    
+    cell.colorBlockView.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
     cell.detailTextLabel.text = knotch[@"comment"];
-    cell.detailTextLabel.textColor = [UIColor blackColor];
-    cell.detailTextLabel.backgroundColor = [UIColor clearColor];
-    
-    //cell.contentView.frame = CGRectMake(10, 0, 300, 74);
-    //cell.textLabel.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
-    
-    //cell.backgroundView.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
-    //cell.imageView.frame = CGRectMake(10, 10, 50, 50);
-    //cell.backgroundColor = cell.imageView.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
-    //[cell bringSubviewToFront:cell.imageView];
-    
+
     //Or spinner:
     //UIActivityIndicatorView
     
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSDictionary* knotch = knotches[indexPath.section];
-    //cell.contentView.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
-    
-    //cell.detailTextLabel.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
-    
-    UIView* colorBlockView = [cell viewWithTag:COLOR_BLOCK_TAG];
-    
-    colorBlockView.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
-    
-    //cell.imageView.frame = CGRectMake(10, 10, 50, 50);
-    //cell.imageView.backgroundColor = KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
-    //[cell.contentView bringSubviewToFront:cell.imageView];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
