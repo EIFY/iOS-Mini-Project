@@ -33,9 +33,11 @@ const int SPINNER_TAG = 1000;
 {
     [super viewDidLoad];
 	  // Do any additional setup after loading the view, typically from a nib.
+    
+    CGSize appFrameSize = [UIScreen mainScreen].applicationFrame.size;
 
-    totalWidth = self.view.frame.size.width;
-    totalHeight = self.view.frame.size.height;
+    totalWidth = appFrameSize.width;
+    totalHeight = appFrameSize.height;
     
     CGFloat navbarHeight = 42.5;
     CGFloat colorStripHeight = 232/2;//There is a 1-px strip of lighter shade below in the sample rendering. Not sure if it's intentional...
@@ -95,7 +97,6 @@ const int SPINNER_TAG = 1000;
     
     nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabelXPosition, nameLabelYPosition, totalWidth - nameLabelXPosition, nameLabelHeight)];
     
-    //nameLabel.text = @"Anda Gansca";
     //In the sample rendering, the spacing between 'An' and 'da' are both 3 pixels, but this unmodified UILabel renders 2 and 4 pixels respectively.
     //Also, UILabel's font rasterization gives lighter shade around the edges then the sample rendering. Not sure what the story is here...
     //On the positive side, this label is tall enough to render letters like ç and ț
@@ -107,7 +108,6 @@ const int SPINNER_TAG = 1000;
     
     locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabelXPosition - 0.5, nameLabelYPosition + nameLabelHeight, totalWidth - nameLabelXPosition, locationLabelHeight)];
     
-    //locationLabel.text = @"San Francisco, California";
     locationLabel.font = [UIFont fontWithName:@"Aller-Light" size:10.5];
     locationLabel.textColor = [UIColor grayColor];
     
@@ -122,10 +122,6 @@ const int SPINNER_TAG = 1000;
     followerCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.5 + 80, 0, 78.0, followerBarHeight - 12)];
     followingCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.5 + 160, 0, 78.0, followerBarHeight - 12)];
     //These labels are also plagued by discrepancies in rasterization shades and letter spacing in comparison to the sample...
-    
-    //gloryCountLabel.text = @"3456";
-    //followerCountLabel.text = @"5772";
-    //followingCountLabel.text = @"6363";
     
     gloryCountLabel.font = followerCountLabel.font = followingCountLabel.font = [UIFont fontWithName:@"Lato-Bold" size:15.0];
     gloryCountLabel.textColor = followerCountLabel.textColor = followingCountLabel.textColor = [UIColor colorWithRed:15.0/255 green:15.0/255 blue:15.0/255 alpha:1.0];
@@ -206,13 +202,9 @@ const int SPINNER_TAG = 1000;
     
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dev.knotch.it:8080/miniProject/user_feed/%@/%i", userId, numberOfKnotchesToLoad]]
-                                                           cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-                                                       timeoutInterval:10];
+                                    cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
     
     [request setHTTPMethod: @"GET"];
-    
-    
-    //NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
      {
@@ -222,8 +214,6 @@ const int SPINNER_TAG = 1000;
                                
                                options:kNilOptions
                                error:&error];
-         
-         //NSLog([json description]);
          
          NSDictionary* userInfo = json[@"userInfo"];
          
@@ -239,7 +229,7 @@ const int SPINNER_TAG = 1000;
              [NSURLConnection sendAsynchronousRequest:pictureRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
               {
                   profilePictureView.image = [UIImage imageWithData:data];
-                  
+
               }];
              
          }
@@ -253,7 +243,7 @@ const int SPINNER_TAG = 1000;
          }
          else
              locationLabel.text = @"San Francisco, California";  //For some reason, the location data is missing for Anda.
-         //If I don't know where you are, you are in SF :D
+                                                                 //If I don't know where you are, you are in SF :D
          
          gloryCountLabel.text = [userInfo[@"num_glory"] stringValue];
          followerCountLabel.text = [userInfo[@"num_followers"] stringValue];
@@ -339,7 +329,7 @@ const int SPINNER_TAG = 1000;
     CGFloat topicArrowImageXPosition = 576/2;
     
     UIView* sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, totalWidth, KnotchTopicHeight)];
-    sectionHeaderView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.947];//Reverse-engineered alpha value from the official app store version
+    sectionHeaderView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.947];//Alpha value reverse-engineered  from the official app store version
     
     UIImageView* topicArrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(topicArrowImageXPosition, 25.0/2, 17, 27)];
     topicArrowImageView.image = [UIImage imageNamed:@"topic-arrow.png"];
@@ -347,7 +337,7 @@ const int SPINNER_TAG = 1000;
     [sectionHeaderView addSubview:topicArrowImageView];
     
     UILabel* knotchTopicLabel = [[UILabel alloc] initWithFrame:CGRectMake(KnotchMargin, 0, topicArrowImageXPosition - KnotchMargin, KnotchTopicHeight)];
-    knotchTopicLabel.text = knotches[section][@"topic"];//@"Women In Dresses";
+    knotchTopicLabel.text = knotches[section][@"topic"];
     knotchTopicLabel.font = [UIFont fontWithName:@"Aller" size:15];
     knotchTopicLabel.textColor = nameFontColor;
     knotchTopicLabel.backgroundColor = [UIColor clearColor];
