@@ -16,9 +16,12 @@
 
 CGFloat KnotchTopicHeight = 52;
 CGFloat KnotchContentHeight = 74;
+CGFloat colorgraphicHeight = 8;
+
+CGFloat colourBarYPosition;
 
 @interface ViewController ()
-
+- (void) renderColorgraphic;
 @end
 
 @implementation ViewController
@@ -44,7 +47,7 @@ CGFloat KnotchContentHeight = 74;
     CGFloat followerBarHeight = 89.0/2;
     CGFloat followerBarWidth = 479.0/2;
     
-    CGFloat colourBarYPosition = followerBarYPosition + followerBarHeight;
+    colourBarYPosition = followerBarYPosition + followerBarHeight;
     CGFloat colourBarHeight = 78.0/2;
     
     CGFloat scrollViewContentHeight = totalHeight + colourBarYPosition - navbarHeight;
@@ -70,7 +73,6 @@ CGFloat KnotchContentHeight = 74;
     
     containerScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     
-    //containerScrollView.bounces = NO;
     containerScrollView.delegate = self;
     containerScrollView.backgroundColor = [UIColor whiteColor];
     containerScrollView.showsVerticalScrollIndicator = NO;
@@ -153,10 +155,29 @@ CGFloat KnotchContentHeight = 74;
     
     [containerScrollView addSubview:followingButtonImageView];
     
-    UIImageView* colourBarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, colourBarYPosition, totalWidth, colourBarHeight)];
-    colourBarImageView.image = [UIImage imageNamed:@"colour-bar.png"];
+    UIView* colourBarBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, colourBarYPosition, totalWidth, colourBarHeight)];
+    colourBarBackgroundView.backgroundColor = [UIColor blackColor];
+    [containerScrollView addSubview:colourBarBackgroundView];
     
-    [containerScrollView addSubview:colourBarImageView];
+    colorgraphicViews = @[[[UIView alloc] init],
+                          [[UIView alloc] init],
+                          [[UIView alloc] init],
+                          [[UIView alloc] init],
+                          [[UIView alloc] init],
+                          [[UIView alloc] init],
+                          [[UIView alloc] init],
+                          [[UIView alloc] init],
+                          [[UIView alloc] init],
+                          [[UIView alloc] init],
+                          [[UIView alloc] init]];
+    
+    for (int i = 0; i < 11; ++i) {
+        
+        UIView* colourView = colorgraphicViews[i];
+        
+        colourView.backgroundColor = [KnotchColor sentiment:i*2];
+        [containerScrollView insertSubview:colourView aboveSubview:colourBarBackgroundView];
+    }
     
     containerScrollView.contentSize = CGSizeMake(totalWidth, scrollViewContentHeight);//Just big enough to bring colourBarImageView in touch with the nav bar
     
@@ -180,6 +201,34 @@ CGFloat KnotchContentHeight = 74;
         }
     }
     */
+}
+
+- (void) renderColorgraphic
+{
+    int knotchCounts[11] = {0};
+
+    for (NSDictionary* knotch in knotches)
+        ++knotchCounts[[knotch[@"sentiment"] intValue]/2];
+    
+    int totalCount = 0;
+    
+    for (int i=0; i<11; ++i)
+        totalCount += knotchCounts[i];
+    
+    CGFloat colorgraphicFullWidth = totalWidth - 2*KnotchMargin;
+    CGFloat colorgraphicYPosition = colourBarYPosition + KnotchMargin;
+    CGFloat colourViewXPosition = KnotchMargin;
+    
+    for (int i=0; i<11; ++i)
+    {
+        UIView* colourView = colorgraphicViews[i];
+        
+        CGFloat colourViewWidth = colorgraphicFullWidth * knotchCounts[i] / totalCount;
+        colourView.frame = CGRectMake(colourViewXPosition, colorgraphicYPosition, colourViewWidth, colorgraphicHeight);
+        
+        colourViewXPosition += colourViewWidth;
+    }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -243,6 +292,7 @@ CGFloat KnotchContentHeight = 74;
         
         knotches = json[@"knotches"];
         
+        [self renderColorgraphic];
         [knotchTableView reloadData];
     }];
 }

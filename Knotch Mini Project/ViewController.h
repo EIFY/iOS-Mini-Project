@@ -27,6 +27,7 @@
     UILabel* followerCountLabel;
     UILabel* followingCountLabel;
     
+    NSArray* colorgraphicViews;
     UITableView* knotchTableView;
     
     NSArray* knotches;
