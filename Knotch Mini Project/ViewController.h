@@ -31,5 +31,7 @@
     UITableView* knotchTableView;
     
     NSArray* knotches;
+    
+    int numberOfKnotchesToLoad;
 }
 @end

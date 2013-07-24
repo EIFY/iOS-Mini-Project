@@ -14,13 +14,16 @@
 
 #import "KnotchTableViewCell.h"
 
-CGFloat KnotchTopicHeight = 52;
-CGFloat KnotchContentHeight = 74;
-CGFloat colorgraphicHeight = 8;
+const CGFloat KnotchTopicHeight = 52;
+const CGFloat KnotchContentHeight = 74;
+const CGFloat colorgraphicHeight = 8;
 
 CGFloat colourBarYPosition;
 
+const int SPINNER_TAG = 1000;
+
 @interface ViewController ()
+- (void) loadKnotches;
 - (void) renderColorgraphic;
 @end
 
@@ -190,17 +193,77 @@ CGFloat colourBarYPosition;
     
     [containerScrollView addSubview:knotchTableView];
     
-    /*
-    for (NSString* family in [UIFont familyNames])
-    {
-        NSLog(@"%@", family);
-        
-        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-        {
-            NSLog(@"  %@", name);
-        }
-    }
-    */
+    numberOfKnotchesToLoad = 40;
+}
+
+- (void) loadKnotches
+{
+    NSString* userId = @"500e3b57bbcd08696800000a";//Stephanie Volftsun
+                       //@"5019296f1f5dc55304003c58";//Anda Gansca
+                       //@"51953d29cf0e230f5a001cc6";//Lars Eilstrup Rasmussen
+                       //@"5010a4e5e22117476d0000f1";//Lana Volftsun
+                       //@"51749a9c3b0d87951700165f";//Kyung Jae Ha
+    
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dev.knotch.it:8080/miniProject/user_feed/%@/%i", userId, numberOfKnotchesToLoad]]
+                                                           cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                       timeoutInterval:10];
+    
+    [request setHTTPMethod: @"GET"];
+    
+    
+    //NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         
+         NSDictionary* json = [NSJSONSerialization
+                               JSONObjectWithData:data
+                               
+                               options:kNilOptions
+                               error:&error];
+         
+         //NSLog([json description]);
+         
+         NSDictionary* userInfo = json[@"userInfo"];
+         
+         //Profile picture doesn't change often. It only loads if there isn't one already.
+         if (!profilePictureView.image) {
+             
+             NSMutableURLRequest *pictureRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[userInfo objectForKey:@"profilePicUrl"]]
+                                                                           cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                                       timeoutInterval:10];
+             
+             [pictureRequest setHTTPMethod:@"GET"];
+             
+             [NSURLConnection sendAsynchronousRequest:pictureRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+              {
+                  profilePictureView.image = [UIImage imageWithData:data];
+                  
+              }];
+             
+         }
+         
+         usernameNavbar.topItem.title = nameLabel.text = userInfo[@"name"];
+         
+         NSString* locationString = userInfo[@"location"];
+         
+         if (locationString) {
+             locationLabel.text = locationString;
+         }
+         else
+             locationLabel.text = @"San Francisco, California";  //For some reason, the location data is missing for Anda.
+         //If I don't know where you are, you are in SF :D
+         
+         gloryCountLabel.text = [userInfo[@"num_glory"] stringValue];
+         followerCountLabel.text = [userInfo[@"num_followers"] stringValue];
+         followingCountLabel.text = [userInfo[@"num_following"] stringValue];
+         
+         knotches = json[@"knotches"];
+         
+         [self renderColorgraphic];
+         [knotchTableView reloadData];
+     }];
 }
 
 - (void) renderColorgraphic
@@ -233,68 +296,7 @@ CGFloat colourBarYPosition;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSString* userId = //@"500e3b57bbcd08696800000a";//Stephanie Volftsun
-                       @"5019296f1f5dc55304003c58";//Anda Gansca
-                       //@"51953d29cf0e230f5a001cc6";//Lars Eilstrup Rasmussen
-                       //@"5010a4e5e22117476d0000f1";//Lana Volftsun
-                       //@"51749a9c3b0d87951700165f";//Kyung Jae Ha
-    
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dev.knotch.it:8080/miniProject/user_feed/%@/40", userId]]
-                                    cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-                                    timeoutInterval:10];
-    
-    [request setHTTPMethod: @"GET"];
-    
-    
-    //NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-    {
-        
-        NSDictionary* json = [NSJSONSerialization
-                              JSONObjectWithData:data
-                              
-                              options:kNilOptions
-                              error:&error];
-        
-        //NSLog([json description]);
-        
-        NSDictionary* userInfo = json[@"userInfo"];
-        
-        NSMutableURLRequest *pictureRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[userInfo objectForKey:@"profilePicUrl"]]
-                                               cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-                                               timeoutInterval:10];
-        
-        [pictureRequest setHTTPMethod:@"GET"];
-        
-        [NSURLConnection sendAsynchronousRequest:pictureRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-         {
-             profilePictureView.image = [UIImage imageWithData:data];
-             
-         }];
-         
-        
-        usernameNavbar.topItem.title = nameLabel.text = userInfo[@"name"];
-        
-        NSString* locationString = userInfo[@"location"];
-        
-        if (locationString) {
-            locationLabel.text = locationString;
-        }
-        else
-            locationLabel.text = @"San Francisco, California";  //For some reason, the location data is missing for Anda.
-                                                                //If I don't know where you are, you are in SF :D
-        
-        gloryCountLabel.text = [userInfo[@"num_glory"] stringValue];
-        followerCountLabel.text = [userInfo[@"num_followers"] stringValue];
-        followingCountLabel.text = [userInfo[@"num_following"] stringValue];
-        
-        knotches = json[@"knotches"];
-        
-        [self renderColorgraphic];
-        [knotchTableView reloadData];
-    }];
+    [self loadKnotches];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -357,22 +359,51 @@ CGFloat colourBarYPosition;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    KnotchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KnotchCell"];
-    
-    if (cell == nil) {
-        cell = [[KnotchTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"KnotchCell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    NSDictionary* knotch = knotches[indexPath.section];
-    
-    cell.sentiment = [knotch[@"sentiment"] intValue];
-    cell.textLabel.text = knotch[@"comment"];
+    if (indexPath.row == 1) {
+        
+        //The spinner is exposed: load more knotches!
+        
+        numberOfKnotchesToLoad += 20;
+        [self loadKnotches];
+        
+        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SpinnerCell"];
+        
+        UIActivityIndicatorView* spinner;
+        
+        if (cell == nil) {
+            cell = [[KnotchTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"SpinnerCell"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, totalWidth, KnotchContentHeight)];
+            spinner.tag = SPINNER_TAG;
 
-    //Or spinner:
-    //UIActivityIndicatorView
-    
-    return cell;
+            [cell.contentView addSubview:spinner];
+        }
+        else
+            spinner = (UIActivityIndicatorView*) [cell viewWithTag:SPINNER_TAG];//Type casting...but I know what I am doing!
+        
+        spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        [spinner startAnimating];
+        
+        return cell;
+        
+    }
+    else
+    {    
+        KnotchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KnotchCell"];
+        
+        if (cell == nil) {
+            cell = [[KnotchTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"KnotchCell"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        NSDictionary* knotch = knotches[indexPath.section];
+        
+        cell.sentiment = [knotch[@"sentiment"] intValue];
+        cell.textLabel.text = knotch[@"comment"];
+        
+        return cell;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -382,7 +413,8 @@ CGFloat colourBarYPosition;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    //Only the last section has another two rows: KnotchCell and SpinnerCell, the later indicating that more Knotches are coming
+    return (section == [knotches count] - 1) ? 2:1;
 }
 
 - (void)didReceiveMemoryWarning
