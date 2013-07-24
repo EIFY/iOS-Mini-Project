@@ -103,6 +103,7 @@ const int SPINNER_TAG = 1000;
     
     nameLabel.font = [UIFont fontWithName:@"Aller" size:17.5];
     nameLabel.textColor = nameFontColor;
+    nameLabel.backgroundColor = [UIColor clearColor];//Defensive measure against strange gray line on simulator. May not be relevant on device.
     
     [containerScrollView insertSubview:nameLabel belowSubview:colorStripView];
     
@@ -110,6 +111,7 @@ const int SPINNER_TAG = 1000;
     
     locationLabel.font = [UIFont fontWithName:@"Aller-Light" size:10.5];
     locationLabel.textColor = [UIColor grayColor];
+    locationLabel.backgroundColor = [UIColor clearColor];
     
     [containerScrollView addSubview:locationLabel];
     
