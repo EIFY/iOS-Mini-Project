@@ -30,25 +30,22 @@ CGFloat KnotchTextMargin = 8;
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-
-    self.textLabel.frame = CGRectMake(KnotchMargin + KnotchTextMargin, 0, 30, 30);
-    self.textLabel.font = [UIFont fontWithName:@"Georgia-Bold" size:30];//[UIFont fontWithName:@"Didot-Bold" size:30];
-    self.textLabel.text = @"“";
-    self.textLabel.backgroundColor = [UIColor clearColor];
     
-    self.detailTextLabel.frame = CGRectMake(KnotchMargin + KnotchTextMargin, 10, self.frame.size.width - (KnotchMargin + KnotchTextMargin)*2, 55);
-    self.detailTextLabel.font = [UIFont fontWithName:@"Aller-Light" size:12.5];//I was told to use Aller, but Aller-Light is more pleasant here :)
-    self.detailTextLabel.numberOfLines = 3;
-    self.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.detailTextLabel.textColor = [UIColor blackColor];
-    self.detailTextLabel.backgroundColor = [UIColor clearColor];
+    self.imageView.frame = CGRectMake(KnotchMargin + KnotchTextMargin, 3.0, 12.5, 10.5);
+    
+    self.textLabel.frame = CGRectMake(KnotchMargin + KnotchTextMargin, 10, self.frame.size.width - (KnotchMargin + KnotchTextMargin)*2, 55);
+    self.textLabel.font = [UIFont fontWithName:@"Aller-Light" size:12.5];//I was told to use Aller, but Aller-Light is more pleasant here :)
+    self.textLabel.numberOfLines = 3;
+    self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.textLabel.textColor = [UIColor blackColor];
+    self.textLabel.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setSentiment:(int)sentiment {
     
     if (sentiment == 10) { //White, "indifferent" sentiment
         
-        self.textLabel.textColor = [UIColor blackColor];
+        self.imageView.image = [UIImage imageNamed:@"FeedQuoteSmallBlack.png"];
         
         self.colorBlockView.layer.borderWidth = 1.0; //Default border color is opaque black already, no need to change
         self.colorBlockView.backgroundColor = [UIColor whiteColor];
@@ -56,7 +53,7 @@ CGFloat KnotchTextMargin = 8;
     }
     else {
         
-        self.textLabel.textColor = [UIColor whiteColor];
+        self.imageView.image = [UIImage imageNamed:@"FeedQuoteSmall.png"];
         
         self.colorBlockView.layer.borderWidth = 0.0;
         self.colorBlockView.backgroundColor = [KnotchColor sentiment:sentiment];

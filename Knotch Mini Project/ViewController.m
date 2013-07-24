@@ -249,7 +249,15 @@ CGFloat KnotchContentHeight = 74;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    //"Transfer" the y offset from the knotch table to the container scroll view if 1. more of the table can be shown or 2. we are at the top of the table, like the official app
+    /*
+     
+     "Transfer" the y offset from the knotch table to the container scroll view if 1. more of the table can be shown or 2. we are at the top of the table, like the official app.
+     
+     Unlike the full-blown official app, there is no Category bar and Colour bar doesn't serve as filter. So as it is, you can grab the Colour bar and scroll back to the profile info.
+     So far, so good. But if the Knotch Table is already scrolled to the middle, resuming scrolling would result in "jumpy" behavior: Knotch Table scrolls to the top and shows from
+     the first Knotch onwards. It's not clear what an improvement should be for this edge case, however, so I left it as it is.
+     
+    */
     
     if (scrollView == knotchTableView) {
         
@@ -308,8 +316,8 @@ CGFloat KnotchContentHeight = 74;
     
     NSDictionary* knotch = knotches[indexPath.section];
     
-    cell.sentiment = [knotch[@"sentiment"] intValue];//cell.colorBlockView.backgroundColor = [KnotchColor sentiment:[knotch[@"sentiment"] intValue]];//KnotchSentimentColors[[knotch[@"sentiment"] intValue]/2];
-    cell.detailTextLabel.text = knotch[@"comment"];
+    cell.sentiment = [knotch[@"sentiment"] intValue];
+    cell.textLabel.text = knotch[@"comment"];
 
     //Or spinner:
     //UIActivityIndicatorView

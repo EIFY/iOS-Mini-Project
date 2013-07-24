@@ -43,6 +43,8 @@
 		F4AC17DE179E2A25000252D7 /* KnotchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC17DD179E2A25000252D7 /* KnotchTableViewCell.m */; };
 		F4AC17E0179E69AF000252D7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4AC17DF179E69AF000252D7 /* Icon@2x.png */; };
 		F4AC17E3179F10BC000252D7 /* KnotchColor.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC17E2179F10BC000252D7 /* KnotchColor.m */; };
+		F4AC17E6179F683B000252D7 /* FeedQuoteSmallBlack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4AC17E4179F683B000252D7 /* FeedQuoteSmallBlack@2x.png */; };
+		F4AC17E7179F683B000252D7 /* FeedQuoteSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4AC17E5179F683B000252D7 /* FeedQuoteSmall@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +91,8 @@
 		F4AC17DF179E69AF000252D7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		F4AC17E1179F10BC000252D7 /* KnotchColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnotchColor.h; sourceTree = "<group>"; };
 		F4AC17E2179F10BC000252D7 /* KnotchColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnotchColor.m; sourceTree = "<group>"; };
+		F4AC17E4179F683B000252D7 /* FeedQuoteSmallBlack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FeedQuoteSmallBlack@2x.png"; sourceTree = "<group>"; };
+		F4AC17E5179F683B000252D7 /* FeedQuoteSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FeedQuoteSmall@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,8 @@
 				F43B8ADB179893E9000999E6 /* followers-bar@2x.png */,
 				F43B8ADC179893E9000999E6 /* following-button@2x.png */,
 				F43B8AE01798940B000999E6 /* topic-arrow@2x.png */,
+				F4AC17E5179F683B000252D7 /* FeedQuoteSmall@2x.png */,
+				F4AC17E4179F683B000252D7 /* FeedQuoteSmallBlack@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -305,6 +311,8 @@
 				F43B8ADF179893E9000999E6 /* following-button@2x.png in Resources */,
 				F43B8AE11798940B000999E6 /* topic-arrow@2x.png in Resources */,
 				F4AC17E0179E69AF000252D7 /* Icon@2x.png in Resources */,
+				F4AC17E6179F683B000252D7 /* FeedQuoteSmallBlack@2x.png in Resources */,
+				F4AC17E7179F683B000252D7 /* FeedQuoteSmall@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
