@@ -12,8 +12,6 @@
 {
     CGFloat totalWidth, totalHeight;
     
-    UIColor* nameFontColor;//Also turned out to be the font color for knotch topic
-    
     UINavigationBar* usernameNavbar;
     
     UIScrollView* containerScrollView;

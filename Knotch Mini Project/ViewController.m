@@ -18,13 +18,35 @@ const CGFloat KnotchTopicHeight = 52;
 const CGFloat KnotchContentHeight = 74;
 const CGFloat colorgraphicHeight = 8;
 
-CGFloat colourBarYPosition;
+const CGFloat navbarHeight = 42.5;
+const CGFloat colorStripHeight = 232/2;  // There is a 1-px strip of lighter shade below the color strip in the sample rendering. Not sure if it's intentional...
+
+const CGFloat nameLabelHeight = 20.5;
+const CGFloat nameLabelXPosition = 223.0/2;
+const CGFloat nameLabelYPosition = navbarHeight + colorStripHeight + 26.0;
+
+const CGFloat locationLabelHeight = 13;
+
+const CGFloat followerBarYPosition = navbarHeight + colorStripHeight + 145.0/2;  // A 1-px strip again, this time of darker shade, above the follower bar.
+                                                                                 // I highly doubt it's intentional given its shade variation along the length.
+
+const CGFloat followerBarHeight = 89.0/2;
+const CGFloat followerBarWidth = 479.0/2;
+
+const CGFloat colourBarYPosition = followerBarYPosition + followerBarHeight;
+const CGFloat colourBarHeight = 78.0/2;
+
+const CGFloat knotchTableViewYPosition = colourBarYPosition + colourBarHeight;
+
+UIColor* nameFontColor;  // Also turned out to be the font color for the topic of the knotch
 
 const int SPINNER_TAG = 1000;
 
 @interface ViewController ()
+
 - (void) loadKnotches;
 - (void) renderColorgraphic;
+
 @end
 
 @implementation ViewController
@@ -41,24 +63,7 @@ const int SPINNER_TAG = 1000;
     totalWidth = appFrameSize.width;
     totalHeight = appFrameSize.height;
     
-    CGFloat navbarHeight = 42.5;
-    CGFloat colorStripHeight = 232/2;//There is a 1-px strip of lighter shade below in the sample rendering. Not sure if it's intentional...
-    
-    CGFloat nameLabelHeight = 20.5;
-    CGFloat nameLabelXPosition = 223.0/2;
-    CGFloat nameLabelYPosition = navbarHeight + colorStripHeight + 26.0;
-    
-    CGFloat locationLabelHeight = 13;
-    
-    CGFloat followerBarYPosition = navbarHeight + colorStripHeight + 145.0/2;//A 1-px strip again, this time of darker shade, above the follower bar. I highly doubt it's intentional given its shade variation along the length.
-    CGFloat followerBarHeight = 89.0/2;
-    CGFloat followerBarWidth = 479.0/2;
-    
-    colourBarYPosition = followerBarYPosition + followerBarHeight;
-    CGFloat colourBarHeight = 78.0/2;
-    
     CGFloat scrollViewContentHeight = totalHeight + colourBarYPosition - navbarHeight;
-    CGFloat knotchTableViewYPosition = colourBarYPosition + colourBarHeight;
     
     nameFontColor = [UIColor colorWithRed:39.0/255 green:49.0/255 blue:55.0/255 alpha:1.0];
     
@@ -76,16 +81,19 @@ const int SPINNER_TAG = 1000;
     
     [usernameNavbar setTitleVerticalPositionAdjustment:3 forBarMetrics:UIBarMetricsDefault];
     
-    usernameNavbar.layer.masksToBounds = YES;//Eliminates shadow
+    usernameNavbar.layer.masksToBounds = YES;  // Eliminates shadow
+
+    // I left some room for "Pull down to refresh" interface for the containerScrollView, only to find out that the test database is static.
+    // As it is, therefore, the space below the nav bar is left blank.
     
-    containerScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    containerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, totalWidth, totalHeight)];
     
     containerScrollView.delegate = self;
     containerScrollView.backgroundColor = [UIColor whiteColor];
     containerScrollView.showsVerticalScrollIndicator = NO;
     
     UIView* colorStripView = [[UIView alloc] initWithFrame:CGRectMake(0, navbarHeight, totalWidth, colorStripHeight)];
-    colorStripView.backgroundColor = [KnotchColor sentiment:14];//Sentiment 14
+    colorStripView.backgroundColor = [KnotchColor sentiment:14];
     
     [containerScrollView addSubview:colorStripView];
     
@@ -97,15 +105,15 @@ const int SPINNER_TAG = 1000;
     profilePictureView.backgroundColor = [UIColor clearColor];
     profilePictureView.contentMode = UIViewContentModeScaleAspectFill;
     
-    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabelXPosition, nameLabelYPosition, totalWidth - nameLabelXPosition, nameLabelHeight)];
+    // In the sample rendering, the spacing between 'An' and 'da' are both 3 pixels, but this unmodified UILabel renders 2 and 4 pixels respectively.
+    // Also, UILabel's font rasterization gives lighter shade around the edges then the sample rendering. Not sure what the story is here...
+    // On the positive side, this label is tall enough to render letters like ç and ț
     
-    //In the sample rendering, the spacing between 'An' and 'da' are both 3 pixels, but this unmodified UILabel renders 2 and 4 pixels respectively.
-    //Also, UILabel's font rasterization gives lighter shade around the edges then the sample rendering. Not sure what the story is here...
-    //On the positive side, this label is tall enough to render letters like ç and ț
+    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameLabelXPosition, nameLabelYPosition, totalWidth - nameLabelXPosition, nameLabelHeight)];
     
     nameLabel.font = [UIFont fontWithName:@"Aller" size:17.5];
     nameLabel.textColor = nameFontColor;
-    nameLabel.backgroundColor = [UIColor clearColor];//Defensive measure against strange gray line on simulator. May not be relevant on device.
+    nameLabel.backgroundColor = [UIColor clearColor];  // Defensive measure against strange gray line on simulator. May not be relevant on device.
     
     [containerScrollView insertSubview:nameLabel belowSubview:colorStripView];
     
@@ -125,10 +133,11 @@ const int SPINNER_TAG = 1000;
     gloryCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.5, 0, 78.0, followerBarHeight - 12)];
     followerCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.5 + 80, 0, 78.0, followerBarHeight - 12)];
     followingCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.5 + 160, 0, 78.0, followerBarHeight - 12)];
-    //These labels are also plagued by discrepancies in rasterization shades and letter spacing in comparison to the sample...
+    
+    // These labels are also plagued by discrepancies in rasterization shades and letter spacing in comparison to the sample...
     
     gloryCountLabel.font = followerCountLabel.font = followingCountLabel.font = [UIFont fontWithName:@"Lato-Bold" size:15.0];
-    gloryCountLabel.textColor = followerCountLabel.textColor = followingCountLabel.textColor = [UIColor colorWithRed:15.0/255 green:15.0/255 blue:15.0/255 alpha:1.0];
+    gloryCountLabel.textColor = followerCountLabel.textColor = followingCountLabel.textColor = [UIColor colorWithRed:15.0/255 green:15.0/255 blue:15.0/255 alpha:1.0];  // A unique color not used anywhere else!
     gloryCountLabel.backgroundColor = followerCountLabel.backgroundColor = followingCountLabel.backgroundColor = [UIColor clearColor];
     gloryCountLabel.textAlignment = followerCountLabel.textAlignment = followingCountLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -182,7 +191,7 @@ const int SPINNER_TAG = 1000;
         [containerScrollView insertSubview:colourView aboveSubview:colourBarBackgroundView];
     }
     
-    containerScrollView.contentSize = CGSizeMake(totalWidth, scrollViewContentHeight);//Just big enough to bring colourBarImageView in touch with the nav bar
+    containerScrollView.contentSize = CGSizeMake(totalWidth, scrollViewContentHeight);  // Just big enough to bring colourBarImageView in touch with the nav bar
     
     knotchTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, knotchTableViewYPosition, totalWidth, scrollViewContentHeight - knotchTableViewYPosition) style:UITableViewStylePlain];
     knotchTableView.sectionHeaderHeight = KnotchTopicHeight;
@@ -236,7 +245,7 @@ const int SPINNER_TAG = 1000;
              
                  NSDictionary* userInfo = json[@"userInfo"];
                  
-                 //Profile picture doesn't change often. It only loads if there isn't one already.
+                 // Profile picture doesn't change often. It only loads if there isn't one already.
                  if (!profilePictureView.image) {
                      
                      NSMutableURLRequest *pictureRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[userInfo objectForKey:@"profilePicUrl"]]
@@ -315,7 +324,7 @@ const int SPINNER_TAG = 1000;
      
      Unlike the full-blown official app, there is no Category bar and Colour bar doesn't serve as filter. So as it is, you can grab the Colour bar and scroll back to the profile info.
      So far, so good. But if the Knotch Table is already scrolled to the middle, resuming scrolling would result in "jumpy" behavior: Knotch Table scrolls to the top and shows from
-     the first Knotch onwards. It's not clear what an improvement should be for this edge case, however, so I left it as it is.
+     the first Knotch onwards. It's not clear what an improvement should be for such edge case, however, so I left it as it is.
      
     */
     
@@ -327,7 +336,7 @@ const int SPINNER_TAG = 1000;
             
             offset.y += knotchTableView.contentOffset.y;
             
-            //Protection against rare madness
+            // Protection against rare madness
             if (offset.y > 233.0)
                 offset.y = 233.0;
             else if (offset.y < 0.0)
@@ -347,7 +356,7 @@ const int SPINNER_TAG = 1000;
     CGFloat topicArrowImageXPosition = 576/2;
     
     UIView* sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, totalWidth, KnotchTopicHeight)];
-    sectionHeaderView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.947];//Alpha value reverse-engineered  from the official app store version
+    sectionHeaderView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.947];  // Alpha value reverse-engineered  from the official app store version
     
     UIImageView* topicArrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(topicArrowImageXPosition, 25.0/2, 17, 27)];
     topicArrowImageView.image = [UIImage imageNamed:@"topic-arrow.png"];
@@ -369,7 +378,7 @@ const int SPINNER_TAG = 1000;
 {
     if (indexPath.row == 1) {
         
-        //The spinner is exposed: load more knotches!
+        // The spinner is exposed: load more knotches!
         
         numberOfKnotchesToLoad += 20;
         [self loadKnotches];
@@ -421,7 +430,7 @@ const int SPINNER_TAG = 1000;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //Only the last section has another two rows: KnotchCell and SpinnerCell, the later indicating that more Knotches are coming
+    // Only the last section has another two rows: KnotchCell and SpinnerCell, the later indicating that more Knotches are coming
     return (section == [knotches count] - 1) ? 2:1;
 }
 
