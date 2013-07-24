@@ -19,7 +19,7 @@ const CGFloat KnotchContentHeight = 74;
 const CGFloat colorgraphicHeight = 8;
 
 const CGFloat navbarHeight = 42.5;
-const CGFloat colorStripHeight = 232/2;  // There is a 1-px strip of lighter shade below the color strip in the sample rendering. Not sure if it's intentional...
+const CGFloat colorStripHeight = 232/2;                                          // There is a 1-px strip of lighter shade below the color strip in the sample rendering. Not sure if it's intentional...
 
 const CGFloat nameLabelHeight = 20.5;
 const CGFloat nameLabelXPosition = 223.0/2;
@@ -38,7 +38,7 @@ const CGFloat colourBarHeight = 78.0/2;
 
 const CGFloat knotchTableViewYPosition = colourBarYPosition + colourBarHeight;
 
-UIColor* nameFontColor;  // Also turned out to be the font color for the topic of the knotch
+UIColor* nameFontColor;                                                          // Also turned out to be the font color for the topic of the knotch
 
 const int SPINNER_TAG = 1000;
 
@@ -83,7 +83,7 @@ const int SPINNER_TAG = 1000;
     
     usernameNavbar.layer.masksToBounds = YES;  // Eliminates shadow
 
-    // I left some room for "Pull down to refresh" interface for the containerScrollView, only to find out that the test database is static.
+    // I left some room for the implementation of the "Pull down to refresh" interface, only to find out that the test database is static.
     // As it is, therefore, the space below the nav bar is left blank.
     
     containerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, totalWidth, totalHeight)];

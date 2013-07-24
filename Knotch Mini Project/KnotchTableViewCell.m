@@ -16,12 +16,12 @@ CGFloat KnotchTextMargin = 8;
 @implementation KnotchTableViewCell
 @synthesize sentiment = _sentiment;
 
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        
         _colorBlockView = [[UIView alloc] initWithFrame:CGRectMake(KnotchMargin, 0, self.frame.size.width - KnotchMargin*2, 130/2)];
         [self.contentView insertSubview:self.colorBlockView belowSubview:self.detailTextLabel];
     }
@@ -34,7 +34,7 @@ CGFloat KnotchTextMargin = 8;
     self.imageView.frame = CGRectMake(KnotchMargin + KnotchTextMargin, 3.0, 12.5, 10.5);
     
     self.textLabel.frame = CGRectMake(KnotchMargin + KnotchTextMargin, 10, self.frame.size.width - (KnotchMargin + KnotchTextMargin)*2, 55);
-    self.textLabel.font = [UIFont fontWithName:@"Aller-Light" size:12.5];//I was told to use Aller, but Aller-Light is more pleasant here :)
+    self.textLabel.font = [UIFont fontWithName:@"Aller-Light" size:12.5];  // I was told to use Aller, but Aller-Light is more pleasant here :)
     self.textLabel.numberOfLines = 3;
     self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.textLabel.textColor = [UIColor blackColor];
@@ -43,11 +43,11 @@ CGFloat KnotchTextMargin = 8;
 
 - (void)setSentiment:(int)sentiment {
     
-    if (sentiment == 10) { //White, "indifferent" sentiment
+    if (sentiment == 10) {  // White, "indifferent" sentiment
         
         self.imageView.image = [UIImage imageNamed:@"FeedQuoteSmallBlack.png"];
         
-        self.colorBlockView.layer.borderWidth = 1.0; //Default border color is opaque black already, no need to change
+        self.colorBlockView.layer.borderWidth = 1.0;  // Default border color is opaque black already, no need to change
         self.colorBlockView.backgroundColor = [UIColor whiteColor];
         
     }

@@ -17,8 +17,7 @@ UIColor* UIColorFromRGB(int rgbValue)
 
 @implementation KnotchColor
 
-
-//Objective-C singleton!
+// Objective-C singleton!
 
 + (void)initialize
 {
