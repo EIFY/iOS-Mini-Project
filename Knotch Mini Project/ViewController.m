@@ -34,6 +34,8 @@ const int SPINNER_TAG = 1000;
     [super viewDidLoad];
 	  // Do any additional setup after loading the view, typically from a nib.
     
+    // I tried to get rid of magic numbers and structure the layout as much as possible, but UI layout is as much art as science!
+    
     CGSize appFrameSize = [UIScreen mainScreen].applicationFrame.size;
 
     totalWidth = appFrameSize.width;
@@ -89,7 +91,7 @@ const int SPINNER_TAG = 1000;
     
     [self.view insertSubview:containerScrollView belowSubview:usernameNavbar];
     
-    profilePictureView = [[UIImageView alloc] initWithFrame:CGRectMake(31.0/2, navbarHeight+192/2, 167.0/2, 153.0/2)];//Bizarre layout, but it's what it is...
+    profilePictureView = [[UIImageView alloc] initWithFrame:CGRectMake(31.0/2, navbarHeight+192/2, 167.0/2, 153.0/2)];
     [containerScrollView insertSubview:profilePictureView aboveSubview:colorStripView];
     
     profilePictureView.backgroundColor = [UIColor clearColor];
@@ -204,57 +206,71 @@ const int SPINNER_TAG = 1000;
     
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dev.knotch.it:8080/miniProject/user_feed/%@/%i", userId, numberOfKnotchesToLoad]]
-                                    cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
+                                                           cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
     
     [request setHTTPMethod: @"GET"];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
      {
-         
-         NSDictionary* json = [NSJSONSerialization
-                               JSONObjectWithData:data
-                               
-                               options:kNilOptions
-                               error:&error];
-         
-         NSDictionary* userInfo = json[@"userInfo"];
-         
-         //Profile picture doesn't change often. It only loads if there isn't one already.
-         if (!profilePictureView.image) {
+         if (!data) {
              
-             NSMutableURLRequest *pictureRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[userInfo objectForKey:@"profilePicUrl"]]
-                                                                           cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-                                                                       timeoutInterval:10];
-             
-             [pictureRequest setHTTPMethod:@"GET"];
-             
-             [NSURLConnection sendAsynchronousRequest:pictureRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-              {
-                  profilePictureView.image = [UIImage imageWithData:data];
-
-              }];
+             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Oopsie."
+                                                             message:@"You have to be connected to the internet to check Knotch Mini. Try again later!"
+                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+             [alert show];
              
          }
+         else {
          
-         usernameNavbar.topItem.title = nameLabel.text = userInfo[@"name"];
-         
-         NSString* locationString = userInfo[@"location"];
-         
-         if (locationString) {
-             locationLabel.text = locationString;
+             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+             
+             if (!json) {
+                 
+                 UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Oopsie."
+                                                                 message:@"Something went wrong when we tried to fetch the user profile. Try again later!"
+                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                 [alert show];
+                 
+             }
+             else {
+             
+                 NSDictionary* userInfo = json[@"userInfo"];
+                 
+                 //Profile picture doesn't change often. It only loads if there isn't one already.
+                 if (!profilePictureView.image) {
+                     
+                     NSMutableURLRequest *pictureRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[userInfo objectForKey:@"profilePicUrl"]]
+                                                                                   cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
+                     
+                     [pictureRequest setHTTPMethod:@"GET"];
+                     
+                     [NSURLConnection sendAsynchronousRequest:pictureRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+                      {
+                          if(data) profilePictureView.image = [UIImage imageWithData:data];
+                      }];
+                     
+                 }
+                 
+                 usernameNavbar.topItem.title = nameLabel.text = userInfo[@"name"];
+                 
+                 NSString* locationString = userInfo[@"location"];
+                 
+                 if (locationString)
+                     locationLabel.text = locationString;
+                 else
+                     locationLabel.text = @"San Francisco, California";  //For some reason, the location data is missing for Anda.
+                                                                         //If I don't know where you are, you are in SF :D
+                 
+                 gloryCountLabel.text = [userInfo[@"num_glory"] stringValue];
+                 followerCountLabel.text = [userInfo[@"num_followers"] stringValue];
+                 followingCountLabel.text = [userInfo[@"num_following"] stringValue];
+                 
+                 knotches = json[@"knotches"];
+                 
+                 [self renderColorgraphic];
+                 [knotchTableView reloadData];
+             }
          }
-         else
-             locationLabel.text = @"San Francisco, California";  //For some reason, the location data is missing for Anda.
-                                                                 //If I don't know where you are, you are in SF :D
-         
-         gloryCountLabel.text = [userInfo[@"num_glory"] stringValue];
-         followerCountLabel.text = [userInfo[@"num_followers"] stringValue];
-         followingCountLabel.text = [userInfo[@"num_following"] stringValue];
-         
-         knotches = json[@"knotches"];
-         
-         [self renderColorgraphic];
-         [knotchTableView reloadData];
      }];
 }
 
@@ -413,6 +429,8 @@ const int SPINNER_TAG = 1000;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+    profilePictureView.image = nil;
 }
 
 @end
