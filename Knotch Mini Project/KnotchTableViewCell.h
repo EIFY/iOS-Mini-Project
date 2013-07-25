@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-CGFloat KnotchMargin;
-CGFloat KnotchTextMargin;
+const CGFloat KnotchMargin;
+const CGFloat KnotchTextMargin;
 
 @interface KnotchTableViewCell : UITableViewCell
 

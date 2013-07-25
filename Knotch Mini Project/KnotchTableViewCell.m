@@ -10,8 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "KnotchColor.h"
 
-CGFloat KnotchMargin = 15;
-CGFloat KnotchTextMargin = 8;
+const CGFloat KnotchMargin = 15;
+const CGFloat KnotchTextMargin = 8;
 
 @implementation KnotchTableViewCell
 @synthesize sentiment = _sentiment;
