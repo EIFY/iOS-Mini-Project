@@ -36,7 +36,7 @@ const CGFloat KnotchTextMargin = 8;
     self.textLabel.frame = CGRectMake(KnotchMargin + KnotchTextMargin, 10, self.frame.size.width - (KnotchMargin + KnotchTextMargin)*2, 55);
     self.textLabel.font = [UIFont fontWithName:@"Aller-Light" size:12.5];  // I was told to use Aller, but Aller-Light is more pleasant here :)
     self.textLabel.numberOfLines = 3;
-    self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.textLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.textLabel.textColor = [UIColor blackColor];
     self.textLabel.backgroundColor = [UIColor clearColor];
 }
